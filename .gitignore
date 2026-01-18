@@ -1,0 +1,10 @@
+# dependencies
+.nx/
+node_modules
+
+# System Files
+.DS_Store
+Thumbs.db
+
+# Module package.json (generated for NX release)
+modules/*/package.json
