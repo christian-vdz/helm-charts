@@ -1,0 +1,16 @@
+apiVersion: v2
+name: traefik-log-dashboard
+version: 0.1.0
+description: A Helm chart for Traefik Log Dashboard
+type: application
+
+# icon:  A URL to an SVG or PNG image to be used as an icon (optional).
+home: https://github.com/christian-vdz/helm-charts/charts/traefik-log-dashboard
+sources: 
+  - https://github.com/hhftechnology/traefik-log-dashboard
+appVersion: "2.4.1"
+
+maintainers:
+  - name: christian-vdz
+    email: christian@slashops.fr
+    url: https://github.com/christian-vdz

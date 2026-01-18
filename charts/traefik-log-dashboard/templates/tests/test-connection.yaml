@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: "{{ include "traefik-log-dashboard.fullname" . }}-test-connection"
+  labels:
+    {{- include "traefik-log-dashboard.labels" . | nindent 4 }}
+  annotations:
+    "helm.sh/hook": test
+spec:
+  containers:
+    - name: wget
+      image: busybox
+      command: ['wget']
+      args: ['{{ include "traefik-log-dashboard.fullname" . }}:{{ .Values.agent.port }}']
+    - name: wget
+      image: busybox
+      command: ['wget']
+      args: ['{{ include "traefik-log-dashboard.fullname" . }}:{{ .Values.dashboard.port }}']
+  restartPolicy: Never
