@@ -1,0 +1,123 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "traefik-log-dashboard.fullname" . }}
+  labels:
+    {{- include "traefik-log-dashboard.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.dashboard.replicaCount }}
+  selector:
+    matchLabels:
+      {{- include "traefik-log-dashboard.labels" . | nindent 6 }}
+  template:
+    metadata:
+      {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        {{- include "traefik-log-dashboard.labels" . | nindent 8 }}
+        {{- with .Values.podLabels }}
+          {{- toYaml . | nindent 8 }}
+        {{- end }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.podSecurityContext }}
+      securityContext:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      containers:
+        - name: {{ .Chart.Name }}-agent
+          image: "{{ .Values.agent.image.repository }}:{{ .Values.agent.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.agent.image.pullPolicy }}
+          ports:
+            - name: agent
+              containerPort: {{ .Values.agent.port }}
+              protocol: TCP
+          volumeMounts:
+            - name: {{ include "traefik-log-dashboard.fullname" . }}-claim0
+              mountPath: /data
+          env:
+            - name: TRAEFIK_LOG_DASHBOARD_AUTH_TOKEN
+              value: your_secure_token_here
+            - name: TRAEFIK_LOG_DASHBOARD_ACCESS_PATH
+              value: /logs/access.log
+            - name: TRAEFIK_LOG_DASHBOARD_ERROR_PATH
+              value: /logs/traefik.log
+          {{- with .Values.securityContext }}
+          securityContext:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          {{- with .Values.livenessProbe }}
+          livenessProbe:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          {{- with .Values.readinessProbe }}
+          readinessProbe:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          {{- with .Values.resources }}
+          resources:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+        - name: {{ .Chart.Name }}-dashboard
+          image: "{{ .Values.dashboard.image.repository }}:{{ .Values.dashboard.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.dashboard.image.pullPolicy }}
+          ports:
+            - name: dashboard
+              containerPort: {{ .Values.dashboard.port }}
+              protocol: TCP
+          volumeMounts:
+            - name: {{ include "traefik-log-dashboard.fullname" . }}-claim0
+              mountPath: /data
+            - name: {{ .Values.agent.traefikLogVolumeName }}
+              mountPath: /logs
+          env:
+            - name: AGENT_API_TOKEN
+              value: d41d8cd98f00b204e9800998ecf8427e
+            - name: AGENT_API_URL
+              value: http://{{ include "traefik-log-dashboard.fullname" . }}:{{ .Values.agent.port }}
+            - name: NEXT_PUBLIC_SHOW_DEMO_PAGE
+              value: "true"
+            - name: NODE_ENV
+              value: production
+            - name: PORT
+              value: "{{ .Values.dashboard.port }}"
+          {{- with .Values.securityContext }}
+          securityContext:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          {{- with .Values.livenessProbe }}
+          livenessProbe:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          {{- with .Values.readinessProbe }}
+          readinessProbe:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          {{- with .Values.resources }}
+          resources:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+      volumes:
+        - name: {{ include "traefik-log-dashboard.fullname" . }}-claim0
+          persistentVolumeClaim:
+            claimName: {{ include "traefik-log-dashboard.fullname" . }}-claim0
+        - name: {{ .Values.agent.traefikLogVolumeName }}
+          persistentVolumeClaim:
+            claimName: {{ .Values.agent.traefikLogVolumeName }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}

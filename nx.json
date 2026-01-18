@@ -1,0 +1,36 @@
+{
+  "$schema": "./node_modules/nx/schemas/nx-schema.json",
+  "targetDefaults": {
+    "lint": {
+      "cache": true
+    }
+  },
+  "release": {
+    "projects": ["charts/*"],
+    "projectsRelationship": "independent",
+    "releaseTagPattern": "{projectName}@v{version}",
+    "version": {
+      "conventionalCommits": true
+    },
+    "changelog": {
+      "projectChangelogs": {
+        "createRelease": "github",
+        "file": "{projectRoot}/CHANGELOG.md",
+        "renderOptions": {
+          "authors": true,
+          "commitReferences": true,
+          "versionTitleDate": true
+        }
+      }
+    },
+    "git": {
+      "commit": true,
+      "tag": true,
+      "commitMessage": "chore(release): {projectName} {version}"
+    }
+  },
+  "namedInputs": {
+    "default": ["{projectRoot}/**/*"],
+    "helm": ["{projectRoot}/**/*.yaml"]
+  }
+}

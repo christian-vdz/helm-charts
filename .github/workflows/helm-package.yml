@@ -1,0 +1,46 @@
+name: Helm Chart Package
+
+on:
+  workflow_dispatch:
+    inputs:
+      chart:
+        required: true
+        type: choice
+        options:
+          - traefik-log-dashboard
+
+jobs:
+  helm:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set environment variables
+        id: set-variables
+        run: |
+          echo "REPOSITORY=ghcr.io/$(echo ${{ github.repository }} | tr '[:upper:]' '[:lower:]')" >> "$GITHUB_OUTPUT"
+          echo "VERSION=$(yq -r .version ./charts/${{ inputs.chart }}/Chart.yaml)" >> "$GITHUB_OUTPUT"          
+
+      - name: Env variable output
+        id: test-variables
+        run: |
+          echo ${{ steps.set-variables.outputs.REPOSITORY }}
+          echo ${{ steps.set-variables.outputs.VERSION }}          
+
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v3.1.0
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ github.token }}
+
+      - name: Package and push Helm chart
+        run: |
+          helm package ./charts/${{ inputs.chart }} --version ${{ steps.set-variables.outputs.VERSION }}
+          helm push ./${{ inputs.chart }}-${{ steps.set-variables.outputs.VERSION }}.tgz oci://${{ steps.set-variables.outputs.REPOSITORY }}/charts          
