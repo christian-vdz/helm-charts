@@ -18,6 +18,8 @@ importers:
         specifier: 22.3.3
         version: 22.3.3
 
+  charts/traefik-log-dashboard: {}
+
 packages:
 
   '@babel/code-frame@7.28.6':

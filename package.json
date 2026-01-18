@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "Helm charts repository managed with Nx",
   "license": "MIT",
-  "targets": {},
   "scripts": {
     "lint": "nx run-many -t lint --exclude=root",
     "graph": "nx graph --exclude=root",
@@ -18,13 +17,9 @@
     "release:publish": "nx release publish",
     "release:dry-run": "nx release --dry-run"
   },
-  "private": true,
   "devDependencies": {
     "@biomejs/biome": "^2.3.11",
     "@nx/js": "22.3.3",
     "nx": "22.3.3"
-  },
-  "workspaces": [
-    "charts/*"
-  ]
+  }
 }
