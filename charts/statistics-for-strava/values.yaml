@@ -9,6 +9,9 @@ strava:
   clientSecret: ""
   refreshToken: ""
 
+# Override default config values. See config/default.yaml for all available options.
+config: {}
+
 app:
   image:
     pullPolicy: IfNotPresent
