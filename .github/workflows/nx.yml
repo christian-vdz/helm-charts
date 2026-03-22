@@ -61,13 +61,15 @@ jobs:
       - name: Run lint, test, and build
         run: npx nx run-many -t lint test build
 
-      - name: Run NX release
-        if: github.ref == 'refs/heads/main'
-        run: npx nx release --dry-run=false --skip-publish
-
       - name: Sync Chart.yaml version
         if: github.ref == 'refs/heads/main'
-        run: npx nx run statistics-for-strava:sync-chart-version
+        run: npx nx run-many -t sync-chart-version --projects=charts/*
+
+      - name: Run NX release
+        if: github.ref == 'refs/heads/main'
+        run: CI=true npx nx release --skip-publish
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Package and push Helm charts
         if: github.ref == 'refs/heads/main'
