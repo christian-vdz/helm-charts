@@ -6,7 +6,8 @@ on:
       chart:
         required: true
         type: choice
-        options: []
+        options:
+          - statistics-for-strava
 
 jobs:
   helm:

@@ -1,0 +1,84 @@
+nameOverride: ""
+fullnameOverride: ""
+
+replicaCount: 1
+httpHost: localhost
+
+strava:
+  clientId: ""
+  clientSecret: ""
+  refreshToken: ""
+
+app:
+  image:
+    pullPolicy: IfNotPresent
+    repository: robiningelbrecht/strava-statistics
+    tag: ""
+  port: 8080
+  readinessProbe:
+    httpGet:
+      path: /
+      port: http
+  livenessProbe:
+    exec:
+      command:
+        - curl
+        - -f
+        - http://localhost:2019/metrics
+    initialDelaySeconds: 60
+  resources: {}
+    # requests:
+    #   cpu: 100m
+    #   memory: 128Mi
+    # limits:
+    #   cpu: 1000m
+    #   memory: 2048Mi
+
+service:
+  type: ClusterIP
+  port: 8080
+
+httpRoute:
+  enabled: false
+  annotations: {}
+  parentRefs:
+    - name: gateway
+      sectionName: http
+  rules:
+    - matches:
+      - path:
+          type: PathPrefix
+          value: /headers
+  extraHostnames: []
+    # - statistics-for-strava.local
+
+ingress:
+  enabled: false
+  className: ""
+  annotations: {}
+  tls: []
+  extraHosts: []
+    # - host: statistics-for-strava.local
+    #   paths:
+    #     - path: /
+    #       pathType: ImplementationSpecific
+
+podLabels: {}
+podAnnotations: {}
+
+podSecurityContext: {}
+  # fsGroup: 2000
+
+securityContext: {}
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  # runAsUser: 1000
+
+affinity: {}
+nodeSelector: {}
+tolerations: []
+
+imagePullSecrets: []
