@@ -1,0 +1,16 @@
+apiVersion: v2
+name: statistics-for-strava
+version: 0.0.1
+description: A Helm chart for Statistics for Strava, a self-hosted web application that provides insights and analytics for Strava activities.
+type: application
+
+# icon:  A URL to an SVG or PNG image to be used as an icon (optional).
+home: https://github.com/christian-vdz/helm-charts/charts/statistics-for-strava
+sources: 
+  - https://github.com/hhftechnology/statistics-for-strava
+appVersion: "v4.7.3"
+
+maintainers:
+  - name: christian-vdz
+    email: christian@slashops.fr
+    url: https://github.com/christian-vdz
