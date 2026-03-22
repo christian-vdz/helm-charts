@@ -8,3 +8,6 @@ Thumbs.db
 
 # Module package.json (generated for NX release)
 modules/*/package.json
+
+# Generated artifacts
+dist

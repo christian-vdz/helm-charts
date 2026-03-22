@@ -4,16 +4,45 @@
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "library",
   "sourceRoot": "charts/statistics-for-strava",
-  "targets": {
-    "lint": {
-      "executor": "nx:run-commands",
-      "options": {
-        "command": "helm lint",
-        "cwd": "charts/statistics-for-strava"
-      }
-    }
+  "scripts": {
+    "postversion": "nx run statistics-for-strava:sync-chart-version"
   },
   "tags": [
     "helm"
-  ]
+  ],
+  "nx": {
+    "targets": {
+      "lint": {
+        "executor": "nx:run-commands",
+        "options": {
+          "command": "helm lint --strict .",
+          "cwd": "charts/statistics-for-strava"
+        }
+      },
+      "sync-chart-version": {
+        "executor": "nx:run-commands",
+        "options": {
+          "command": "node ../../sync-chart-version.js statistics-for-strava",
+          "cwd": "charts/statistics-for-strava"
+        }
+      },
+      "package": {
+        "executor": "@nx-extensions/helm:package",
+        "outputs": [
+          "{options.outputFolder}"
+        ],
+        "options": {
+          "chartFolder": "charts/statistics-for-strava",
+          "outputFolder": "{workspaceRoot}/dist/charts/{projectRoot}",
+          "push": true,
+          "remote": "ghcr.io/christian-vdz/helm-charts",
+          "dependencies": {
+            "update": true,
+            "build": true,
+            "repositories": []
+          }
+        }
+      }
+    }
+  }
 }

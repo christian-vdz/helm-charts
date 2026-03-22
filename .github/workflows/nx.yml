@@ -16,6 +16,13 @@ jobs:
           filter: tree:0
           fetch-depth: 0
 
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v4.0.0
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ github.token }}
+
       - uses: actions/cache@v5
         with:
           path: '**/node_modules'
@@ -35,8 +42,23 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
+      - name: Install Helm
+        uses: azure/setup-helm@v4
+
       - name: Run Biome check
         run: pnpm run biome:check
 
       - name: Run lint, test, and build
         run: npx nx run-many -t lint test build
+
+      - name: Run NX release
+        if: github.ref == 'refs/heads/main'
+        run: npx nx release --dry-run=false
+
+      - name: Sync Chart.yaml version
+        if: github.ref == 'refs/heads/main'
+        run: npx nx run statistics-for-strava:sync-chart-version
+
+      - name: Package and push Helm charts
+        if: github.ref == 'refs/heads/main'
+        run: npx nx run-many -t package --projects=charts/*
