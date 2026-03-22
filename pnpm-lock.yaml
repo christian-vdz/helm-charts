@@ -18,6 +18,8 @@ importers:
         specifier: 22.6.1
         version: 22.6.1
 
+  charts/statistics-for-strava: {}
+
 packages:
 
   '@babel/code-frame@7.28.6':
