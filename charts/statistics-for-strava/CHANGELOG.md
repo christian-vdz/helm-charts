@@ -1,3 +1,9 @@
+## 0.2.1 (2026-03-22)
+
+### 🩹 Fixes
+
+- **statistics-for-strava:** remove commented vars ([c90fcbe](https://github.com/christian-vdz/helm-charts/commit/c90fcbe))
+
 ## 0.2.0 (2026-03-22)
 
 ### 🚀 Features
