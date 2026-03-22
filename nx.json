@@ -17,7 +17,8 @@
         "createRelease": "github",
         "file": "{projectRoot}/CHANGELOG.md",
         "renderOptions": {
-          "authors": true,
+          "authors": false,
+          "versionTitleTemplate": "## {version} ({date})",
           "commitReferences": true,
           "versionTitleDate": true
         }
@@ -32,5 +33,7 @@
   "namedInputs": {
     "default": ["{projectRoot}/**/*"],
     "helm": ["{projectRoot}/**/*.yaml"]
-  }
+  },
+  "publish": false,
+  "analytics": false
 }
