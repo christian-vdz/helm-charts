@@ -38,11 +38,6 @@ spec:
               mountPath: /var/www/storage/database
             - name: {{ include "app.fullname" . }}-claim0
               mountPath: /var/www/storage/files
-          # env:
-          #   - name: PROXY_HOST
-          #     value: "{{ .Values.httpHost }}"
-          #   - name: PROXY_PORT
-          #     value: "{{ .Values.app.port }}"
           envFrom:
             - configMapRef:
                 name: {{ include "app.fullname" . }}-env
