@@ -6,8 +6,7 @@ on:
       chart:
         required: true
         type: choice
-        options:
-          - traefik-log-dashboard
+        options: []
 
 jobs:
   helm:
