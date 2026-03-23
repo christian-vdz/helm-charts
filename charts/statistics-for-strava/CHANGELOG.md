@@ -1,3 +1,9 @@
+## 0.2.5 (2026-03-23)
+
+### 🩹 Fixes
+
+- set resources.requests value ([4a429ff](https://github.com/christian-vdz/helm-charts/commit/4a429ff))
+
 ## 0.2.4 (2026-03-23)
 
 ### 🩹 Fixes
