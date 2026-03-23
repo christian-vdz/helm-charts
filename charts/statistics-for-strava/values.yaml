@@ -22,7 +22,7 @@ app:
   image:
     pullPolicy: IfNotPresent
     repository: robiningelbrecht/strava-statistics
-    tag: ""
+    tag: "" # Defaults to chart appVersion
   port: 8080
   readinessProbe:
     httpGet:
@@ -35,10 +35,10 @@ app:
         - -f
         - http://localhost:2019/metrics
     initialDelaySeconds: 60
-  resources: {}
-    # requests:
-    #   cpu: 100m
-    #   memory: 128Mi
+  resources:
+    requests:
+      cpu: 50m
+      memory: 64Mi
     # limits:
     #   cpu: 1000m
     #   memory: 2048Mi
