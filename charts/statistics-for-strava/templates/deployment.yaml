@@ -10,7 +10,7 @@ spec:
   replicas: {{ .Values.app.replicaCount }}
   selector:
     matchLabels:
-      {{- include "app.labels" . | nindent 6 }}
+      {{- include "app.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       {{- with .Values.podAnnotations }}
