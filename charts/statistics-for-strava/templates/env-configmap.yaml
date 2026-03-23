@@ -6,6 +6,6 @@ metadata:
     {{- include "app.labels" . | nindent 4 }}
 data:
   TZ: Europe/Paris
-  STRAVA_CLIENT_ID: {{ .Values.strava.clientId }}
-  STRAVA_CLIENT_SECRET: {{ .Values.strava.clientSecret }}
-  STRAVA_REFRESH_TOKEN: {{ .Values.strava.refreshToken }}
+  STRAVA_CLIENT_ID: {{ .Values.strava.clientId | quote }}
+  STRAVA_CLIENT_SECRET: {{ .Values.strava.clientSecret | quote }}
+  STRAVA_REFRESH_TOKEN: {{ .Values.strava.refreshToken | quote }}
