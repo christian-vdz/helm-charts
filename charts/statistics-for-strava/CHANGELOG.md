@@ -1,3 +1,10 @@
+## 0.2.3 (2026-03-23)
+
+### 🩹 Fixes
+
+- configmap force values as strings ([7d51083](https://github.com/christian-vdz/helm-charts/commit/7d51083))
+- deployment selector labels ([0ee877b](https://github.com/christian-vdz/helm-charts/commit/0ee877b))
+
 ## 0.2.2 (2026-03-23)
 
 ### 🩹 Fixes
