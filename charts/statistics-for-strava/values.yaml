@@ -10,7 +10,13 @@ strava:
   refreshToken: ""
 
 # Override default config values. See config/default.yaml for all available options.
-config: {}
+# Athlete's birth and weight history dates are required for the app to import data from Strava.
+config:
+  general:
+    athlete:
+      birthday: '2000-01-01'
+      weightHistory:
+        "2000-01-01": 60
 
 app:
   image:
