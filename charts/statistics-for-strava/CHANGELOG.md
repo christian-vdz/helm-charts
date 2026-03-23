@@ -1,3 +1,10 @@
+## 0.2.4 (2026-03-23)
+
+### 🩹 Fixes
+
+- set birthday and weightHistory example values ([4726fcb](https://github.com/christian-vdz/helm-charts/commit/4726fcb))
+- default config file ([df11a93](https://github.com/christian-vdz/helm-charts/commit/df11a93))
+
 ## 0.2.3 (2026-03-23)
 
 ### 🩹 Fixes
