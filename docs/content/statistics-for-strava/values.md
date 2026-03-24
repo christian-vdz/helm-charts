@@ -48,5 +48,8 @@ prev: statistics-for-strava/import-data
 | service.type | string | `"ClusterIP"` |
 | strava.clientId | string | `""` |
 | strava.clientSecret | string | `""` |
+| strava.existingSecretName | string | `""` |
 | strava.refreshToken | string | `""` |
+| strava.useExistingSecret | bool | `false` |
+| timezone | string | `"Europe/Paris"` |
 | tolerations | list | `[]` |
