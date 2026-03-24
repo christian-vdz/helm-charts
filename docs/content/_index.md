@@ -9,5 +9,5 @@ type: docs
 ## Charts
 
 {{< cards >}}
-  {{< card link="charts/statistics-for-strava" title="statistics-for-strava" icon="book-open" >}}
+  {{< card link="statistics-for-strava" title="Statistics for Strava" icon="book-open" >}}
 {{< /cards >}}
