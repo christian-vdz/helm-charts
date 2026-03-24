@@ -54,9 +54,9 @@ jobs:
       - name: Install Helm
         uses: azure/setup-helm@v5
 
-      - name: Sync Chart.yaml version
+      - name: Chart pre-release tasks
         if: github.ref == 'refs/heads/main'
-        run: npx nx run-many -t sync-chart-version --projects=charts/*
+        run: npx nx run-many -t pre-release --projects=charts/*
 
       - name: Package and push Helm charts
         if: github.ref == 'refs/heads/main'

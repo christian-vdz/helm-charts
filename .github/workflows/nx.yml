@@ -53,9 +53,16 @@ jobs:
       - name: Run lint, test, and build
         run: npx nx run-many -t lint test build
 
-      - name: Sync Chart.yaml version
+      - name: Chart pre-release tasks
         if: github.ref == 'refs/heads/main'
-        run: npx nx run-many -t sync-chart-version --projects=charts/*
+        run: |
+          npx nx run-many -t pre-release --projects=charts/*
+          git add charts/
+          # if there are changes to commit, commit and push them
+          if ! git diff --cached --quiet; then
+            git commit -m "chore(pre-release): sync chart version"
+            git push
+          fi
 
       - name: Run NX release
         if: github.ref == 'refs/heads/main'
