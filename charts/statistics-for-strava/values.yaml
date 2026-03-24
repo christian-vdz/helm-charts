@@ -3,6 +3,7 @@ fullnameOverride: ""
 
 replicaCount: 1
 httpHost: localhost
+timezone: Europe/Paris
 
 strava:
   clientId: ""

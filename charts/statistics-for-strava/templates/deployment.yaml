@@ -38,6 +38,9 @@ spec:
               mountPath: /var/www/storage/database
             - name: {{ include "app.fullname" . }}-claim0
               mountPath: /var/www/storage/files
+          env:
+            - name: TZ
+              value: {{ .Values.timezone }}
           envFrom:
             - configMapRef:
                 name: {{ include "app.fullname" . }}-env
