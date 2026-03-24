@@ -47,10 +47,6 @@ jobs:
       - name: Install Helm
         uses: azure/setup-helm@v5
 
-      - name: Chart pre-release tasks
-        if: github.ref == 'refs/heads/main'
-        run: npx nx run-many -t pre-release --projects=charts/*
-
       - name: Package and push Helm charts
         if: github.ref == 'refs/heads/main'
         run: npx nx run-many -t package --projects=charts/*

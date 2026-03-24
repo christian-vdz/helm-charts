@@ -2,8 +2,8 @@ name: NX CI
 
 on:
   push:
-    branches:
-      - main
+    branches: ["main"]
+    paths-ignore: ["docs/**"]
   pull_request:
 
 permissions:
@@ -83,8 +83,13 @@ jobs:
         uses: azure/setup-helm@v5
 
       - name: Dry run NX release
-        if: github.ref == 'refs/heads/main'
         run: CI=true npx nx release --dry-run
+
+      - name: Run NX release
+        if: github.ref == 'refs/heads/main'
+        run: CI=true npx nx release --skip-publish
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Chart pre-release tasks
         if: github.ref == 'refs/heads/main'
@@ -93,14 +98,8 @@ jobs:
           git add charts/ docs/
           # if there are changes to commit, commit and push them
           if [ -n "$(git status --porcelain)" ]; then
-            git commit -m "chore(pre-release): sync chart version"
+            git commit -m "chore(pre-release): sync chart and docs versions"
             git push
           else
             echo "No changes detected. Skipping commit."
           fi
-
-      - name: Run NX release
-        if: github.ref == 'refs/heads/main'
-        run: CI=true npx nx release --skip-publish
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
