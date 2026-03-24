@@ -1,3 +1,13 @@
+## 0.3.0 (2026-03-24)
+
+### 🚀 Features
+
+- use secret to store credentials ([8cddcc0](https://github.com/christian-vdz/helm-charts/commit/8cddcc0))
+
+### 🩹 Fixes
+
+- move TZ config ([7ca56a9](https://github.com/christian-vdz/helm-charts/commit/7ca56a9))
+
 ## 0.2.5 (2026-03-23)
 
 ### 🩹 Fixes
