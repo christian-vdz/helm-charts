@@ -1,6 +1,7 @@
 # dependencies
 .nx/
 node_modules
+.tool-versions
 
 # System Files
 .DS_Store
