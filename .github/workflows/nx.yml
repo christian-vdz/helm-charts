@@ -90,11 +90,13 @@ jobs:
         if: github.ref == 'refs/heads/main'
         run: |
           npx nx run-many -t pre-release --projects=charts/*
-          git add charts/
+          git add charts/ docs/
           # if there are changes to commit, commit and push them
-          if ! git diff --cached --quiet; then
+          if [ -n "$(git status --porcelain)" ]; then
             git commit -m "chore(pre-release): sync chart version"
             git push
+          else
+            echo "No changes detected. Skipping commit."
           fi
 
       - name: Run NX release
