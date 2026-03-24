@@ -1,4 +1,4 @@
-// sync-readme-version.js (root level)
+// sync-docs-version.js (root level)
 const fs = require('fs');
 const path = require('path');
 
@@ -13,6 +13,7 @@ if (!chartName) {
 const chartDir = path.join(__dirname, 'charts', chartName);
 const chartYamlPath = path.join(chartDir, 'Chart.yaml');
 const readmePath = path.join(chartDir, 'README.md');
+const docsPath = path.join(__dirname, 'docs', 'content', chartName, 'install.md');
 
 // Read Chart.yaml
 let chartYaml = fs.readFileSync(chartYamlPath, 'utf8');
@@ -47,3 +48,14 @@ readmeContent = readmeContent.replace(installCommandRegex, newInstallCommand);
 // Write updated README.md
 fs.writeFileSync(readmePath, readmeContent);
 console.log(`Updated ${chartName}/README.md version to ${newVersion} and appVersion to ${newAppVersion}`);
+
+// Read documentation
+let docsContent = fs.readFileSync(docsPath, 'utf8');
+
+// Update version in documentation
+const docsVersionRegex = /--version \s*([0-9]+\.[0-9]+\.[0-9]+)/;
+docsContent = docsContent.replace(docsVersionRegex, `--version ${newVersion}`);
+
+// Write updated documentation
+fs.writeFileSync(docsPath, docsContent);
+console.log(`Updated ${chartName} documentation version to ${newVersion}`);

@@ -5,7 +5,7 @@
   "projectType": "library",
   "sourceRoot": "charts/statistics-for-strava",
   "scripts": {
-    "pre-release": "nx run statistics-for-strava:sync-chart-version && nx run statistics-for-strava:sync-readme-version"
+    "pre-release": "nx run statistics-for-strava:sync-chart-version && nx run statistics-for-strava:sync-docs-version"
   },
   "tags": [
     "helm"
@@ -26,10 +26,10 @@
           "cwd": "charts/statistics-for-strava"
         }
       },
-      "sync-readme-version": {
+      "sync-docs-version": {
         "executor": "nx:run-commands",
         "options": {
-          "command": "node ../../sync-readme-version.js statistics-for-strava",
+          "command": "node ../../sync-docs-version.js statistics-for-strava",
           "cwd": "charts/statistics-for-strava"
         }
       },
