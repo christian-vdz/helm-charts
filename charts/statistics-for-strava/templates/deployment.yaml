@@ -42,8 +42,12 @@ spec:
             - name: TZ
               value: {{ .Values.timezone }}
           envFrom:
-            - configMapRef:
-                name: {{ include "app.fullname" . }}-env
+            - secretRef:
+            {{- if not .Values.strava.useExistingSecret }}
+                name: {{ include "app.fullname" . }}
+            {{- else }}
+                name: {{ .Values.strava.existingSecretName }}
+            {{- end }}
           {{- with .Values.securityContext }}
           securityContext:
             {{- toYaml . | nindent 12 }}

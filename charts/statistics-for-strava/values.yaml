@@ -6,9 +6,13 @@ httpHost: localhost
 timezone: Europe/Paris
 
 strava:
+  # Strava API credentials. Required if useExistingSecret is false.
   clientId: ""
   clientSecret: ""
   refreshToken: ""
+  # Set to true to use an existing secret instead of creating a new one with the provided Strava credentials.
+  useExistingSecret: false
+  existingSecretName: ""
 
 # Override default config values. See config/default.yaml for all available options.
 # Athlete's birth and weight history dates are required for the app to import data from Strava.
