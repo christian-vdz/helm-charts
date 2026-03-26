@@ -23,6 +23,7 @@ prev: statistics-for-strava/import-data
 | config.general.athlete.birthday | string | `"2000-01-01"` |
 | config.general.athlete.weightHistory.2000-01-01 | int | `60` |
 | fullnameOverride | string | `""` |
+| gearMaintenanceConfig.enabled | bool | `false` |
 | httpHost | string | `"localhost"` |
 | httpRoute.annotations | object | `{}` |
 | httpRoute.enabled | bool | `false` |
