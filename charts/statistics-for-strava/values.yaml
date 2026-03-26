@@ -23,6 +23,11 @@ config:
       weightHistory:
         "2000-01-01": 60
 
+# Set gear maintenance config values. See config/example-gear-maintenance.yaml for all available options.
+# Note: the gear maintenance feature is disabled by default. Set `gearMaintenanceConfig.enabled` to true to enable it.
+gearMaintenanceConfig:
+  enabled: false
+
 app:
   image:
     pullPolicy: IfNotPresent
