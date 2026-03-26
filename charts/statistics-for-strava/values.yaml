@@ -27,6 +27,11 @@ config:
 # Note: the gear maintenance feature is disabled by default. Set `gearMaintenanceConfig.enabled` to true to enable it.
 gearMaintenanceConfig:
   enabled: false
+  hashtagPrefix: 'sfs'
+  # List of components to track for maintenance. Each component can be attached to one or more gear and can have multiple maintenance tasks.
+  # /!\ At least one component is required to enable the gear maintenance feature.
+  components: []
+  gears: []
 
 app:
   image:
