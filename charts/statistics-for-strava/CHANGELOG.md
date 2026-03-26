@@ -1,3 +1,9 @@
+## 0.4.1 (2026-03-26)
+
+### 🩹 Fixes
+
+- add gearMaintenanceConfig default values ([e31dd10](https://github.com/christian-vdz/helm-charts/commit/e31dd10))
+
 ## 0.4.0 (2026-03-26)
 
 ### 🚀 Features
