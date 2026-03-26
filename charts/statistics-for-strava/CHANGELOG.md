@@ -1,3 +1,9 @@
+## 0.4.0 (2026-03-26)
+
+### 🚀 Features
+
+- add gear maintenance config ([35afe46](https://github.com/christian-vdz/helm-charts/commit/35afe46))
+
 ## 0.3.0 (2026-03-24)
 
 ### 🚀 Features
