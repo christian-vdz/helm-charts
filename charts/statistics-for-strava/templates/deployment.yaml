@@ -38,6 +38,8 @@ spec:
               mountPath: /var/www/storage/database
             - name: {{ include "app.fullname" . }}-claim0
               mountPath: /var/www/storage/files
+            - name: {{ include "app.fullname" . }}-build
+              mountPath: /var/www/build
           env:
             - name: TZ
               value: {{ .Values.timezone }}
@@ -71,6 +73,9 @@ spec:
         - name: {{ include "app.fullname" . }}-claim0
           persistentVolumeClaim:
             claimName: {{ include "app.fullname" . }}-claim0
+        - name: {{ include "app.fullname" . }}-build
+          persistentVolumeClaim:
+            claimName: {{ include "app.fullname" . }}-build
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
