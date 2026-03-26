@@ -10,3 +10,9 @@ metadata:
 data:
   config.yaml: |
 {{ $merged | toYaml | indent 4 }}
+{{- if .Values.gearMaintenanceConfig.enabled }}
+{{- with .Values.gearMaintenanceConfig }}
+  gear-maintenance.yaml: |
+{{- toYaml . | nindent 4 }}
+{{- end }}
+{{- end }}
