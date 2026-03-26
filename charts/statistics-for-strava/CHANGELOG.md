@@ -1,3 +1,9 @@
+## 0.4.2 (2026-03-26)
+
+### 🩹 Fixes
+
+- persist build directory ([1bef594](https://github.com/christian-vdz/helm-charts/commit/1bef594))
+
 ## 0.4.1 (2026-03-26)
 
 ### 🩹 Fixes
