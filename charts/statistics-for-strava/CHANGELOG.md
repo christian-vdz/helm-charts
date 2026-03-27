@@ -1,3 +1,9 @@
+## 0.5.0 (2026-03-27)
+
+### 🚀 Features
+
+- add daemon container ([29129a6](https://github.com/christian-vdz/helm-charts/commit/29129a6))
+
 ## 0.4.2 (2026-03-26)
 
 ### 🩹 Fixes
