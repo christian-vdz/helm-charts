@@ -1,3 +1,9 @@
+## 0.5.1 (2026-03-27)
+
+### 🩹 Fixes
+
+- deployment daemon container ([f71a672](https://github.com/christian-vdz/helm-charts/commit/f71a672))
+
 ## 0.5.0 (2026-03-27)
 
 ### 🚀 Features
