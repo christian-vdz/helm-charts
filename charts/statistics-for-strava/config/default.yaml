@@ -1,6 +1,6 @@
 ### https://raw.githubusercontent.com/robiningelbrecht/statistics-for-strava/refs/heads/master/docs/configuration/config-yaml-example.md
 general:
-  # The URL on which the app will be hosted. This URL will be used in the manifest file. 
+  # The URL on which the app will be hosted. This URL will be used in the manifest file.
   # This will allow you to install the web app as a native app on your device.
   appUrl: 'http://localhost:8080/'
   # Optional subtitle to display in the navbar.
@@ -16,13 +16,13 @@ general:
     birthday: 'YYYY-MM-DD'
     # The formula used to calculate your max heart rate. The default is Fox (220 - age).
     # Allowed values: arena, astrand, fox, gellish, nes, tanaka (https://pmc.ncbi.nlm.nih.gov/articles/PMC7523886/table/t2-ijes-13-7-1242/)
-    # Or you can set a fixed number for any given date range.  
+    # Or you can set a fixed number for any given date range.
     maxHeartRateFormula: 'fox'
     # maxHeartRateFormula:
     #    "2020-01-01": 198
     #    "2025-01-10": 193
     # The formula used to calculate your resting heart rate. The default is heuristicAgeBased.
-    # Allowed values: a fixed number, heuristicAgeBased or you can set a fixed number for any given date range.  
+    # Allowed values: a fixed number, heuristicAgeBased or you can set a fixed number for any given date range.
     restingHeartRateFormula: 'heuristicAgeBased'
     # restingHeartRateFormula: 50
     # restingHeartRateFormula:
@@ -30,7 +30,7 @@ general:
     #    "2025-01-10": 55
     # If you're not sure about your zones, leave this unchanged, the defaults are sensible.
     heartRateZones:
-      # Relative or absolute. 
+      # Relative or absolute.
       # Relative will treat the zone numbers as percentages based on your max heart rate, while absolute will treat them as actual heartbeats per minute.
       # This mode will apply to all heart rate zones you define.
       mode: relative
@@ -50,9 +50,9 @@ general:
           to: 90
         zone5:
           from: 91
-          to: null # Infinity and beyond.
-      # 🔥 PRO tip: You can further refine your heart rate zones by specifying date ranges and sport types.
-      #    Read more about the possibilities on https://statistics-for-strava-docs.robiningelbrecht.be/#/configuration/main-configuration?id=athlete-heart-rate-zones
+          to: null  # Infinity and beyond.
+          # 🔥 PRO tip: You can further refine your heart rate zones by specifying date ranges and sport types.
+          #    Read more about the possibilities on https://statistics-for-strava-docs.robiningelbrecht.be/#/configuration/main-configuration?id=athlete-heart-rate-zones
     # History of weight (in kg or pounds, depending on appearance.unitSystem). Needed to calculate relative w/kg.
     # Make sure to replace the YYYY-MM-DD examples with your own weight history.
     # Read more about the weight history on https://statistics-for-strava-docs.robiningelbrecht.be/#/configuration/main-configuration?id=athlete-weight-history
@@ -78,8 +78,8 @@ appearance:
   # For valid PHP date formats: https://www.php.net/manual/en/datetime.format.php
   # If you don't know how to use these formats, leave this unchanged — the defaults are sensible.
   dateFormat:
-    short: 'd-m-y' # This renders to 01-01-25
-    normal: 'd-m-Y' # This renders to 01-01-2025
+    short: 'd-m-y'  # This renders to 01-01-25
+    normal: 'd-m-Y'  # This renders to 01-01-2025
   dashboard:
     # The dashboard is built using widgets. You can enable or disable each widget, and set their respective width.
     # Leave this setting unchanged to use the default dashboard.
@@ -99,8 +99,8 @@ appearance:
     # Enables or disables grayscale styling on the heatmap.
     enableGreyScale: true
   photos:
-    # Optional, an array of sport types for which photos should be hidden on the photos page. 
-    # They will not be rendered, and they won't show up in the filters. 
+    # Optional, an array of sport types for which photos should be hidden on the photos page.
+    # They will not be rendered, and they won't show up in the filters.
     # A full list of allowed options is available on https://statistics-for-strava-docs.robiningelbrecht.be/#/configuration/main-configuration?id=supported-sport-types
     hidePhotosForSportTypes: []
     # Optional, a list of filters that are enabled by default. For example, you can use this to automatically hide all photos from virtual activities.
@@ -108,11 +108,11 @@ appearance:
       # A full list of allowed options is available on https://statistics-for-strava-docs.robiningelbrecht.be/#/configuration/main-configuration?id=supported-sport-types
       sportTypes: []
       # A valid ISO2 country code.
-      countryCode: null  
+      countryCode: null
   # With this list you can decide the order the sport types will be rendered in. For example in the tabs on the dashboard.
   # You don't have to include all sport types. Sport types not included in this list will be rendered by the app default.
-  # A full list of allowed options is available on https://statistics-for-strava-docs.robiningelbrecht.be/#/configuration/main-configuration?id=supported-sport-types 
-  sportTypesSortingOrder: []  
+  # A full list of allowed options is available on https://statistics-for-strava-docs.robiningelbrecht.be/#/configuration/main-configuration?id=supported-sport-types
+  sportTypesSortingOrder: []
 import:
   # Strava API has rate limits (https://statistics-for-strava-docs.robiningelbrecht.be/#/troubleshooting/faq?id=why-does-it-take-so-long-to-import-my-data),
   # to make sure we don't hit the rate limit, we want to cap the number of new activities processed
@@ -120,7 +120,7 @@ import:
   # take up to 3 API calls, 250 should be a safe number.
   numberOfNewActivitiesToProcessPerImport: 250
   # Sport types to import. Leave empty to import all sport types
-  # A full list of allowed options is available on https://statistics-for-strava-docs.robiningelbrecht.be/#/configuration/main-configuration?id=supported-sport-types 
+  # A full list of allowed options is available on https://statistics-for-strava-docs.robiningelbrecht.be/#/configuration/main-configuration?id=supported-sport-types
   # ⚠️ Changing this setting after activities have already been imported will delete all activities that are not included in the list of sport types.
   sportTypesToImport: []
   # Activity visibilities to import. Leave empty to import all visibilities
@@ -128,12 +128,12 @@ import:
   # Allowed values: ["everyone", "followers_only", "only_me"]
   # ⚠️ Changing this setting after activities have already been imported will delete all activities that are not included in the list of visibilities.
   activityVisibilitiesToImport: []
-  # Optional, the date (YYYY-MM-DD) from which you want to start importing activities. 
+  # Optional, the date (YYYY-MM-DD) from which you want to start importing activities.
   # Any activity recorded before this date, will not be imported.
   # This can be used if you want to skip the import of older activities. Leave empty to disable.
   # ⚠️ Changing this setting after activities have already been imported will delete all activities recorded before the specified date.
   skipActivitiesRecordedBefore: null
-  # An array of activity ids to skip during import. 
+  # An array of activity ids to skip during import.
   # This allows you to skip specific activities during import.
   # ["123456789", "987654321"]
   activitiesToSkipDuringImport: []
@@ -149,7 +149,7 @@ metrics:
   # If you're not familiar with the Eddington score, it's best to leave this as is for now and explore it once the app is running.
   # 🔥 PRO tip: it's possible to use the same sport type over multiple eddington numbers.
   eddington:
-      # The label to be used for the tabs on the Eddington page.
+    # The label to be used for the tabs on the Eddington page.
     - label: 'Ride'
       # A boolean to indicate if this score should be displayed in the side navigation.
       # You can only enable two of these at the same time.
@@ -170,31 +170,31 @@ metrics:
       showInDashboardWidget: false
       sportTypesToInclude: ['Walk', 'Hike']
 gear:
-    # Optional, used to enrich gear with data that cannot be configured in Strava.  
-    stravaGear:
-      # The Strava gear ID.
-      # ⚠️ Do NOT copy the gear ID from the Strava URL, that value will not work.
-      # Instead, open the gear details popup (click the question-mark icon in the top-right corner of the gear page) 
-      # and copy the gear ID shown there.
-      # https://statistics-for-strava-docs.robiningelbrecht.be/#/configuration/gear-maintenance?id=strava-gear-ids
-      - gearId: 'g12337767'
-        # Used to calculate the relative cost per workout and hour.
-        purchasePrice:
-          amountInCents: 123456
-          currency: 'EUR'
-    # Optional, this is useful for gear that Strava doesn't allow you to track
-    # Read how to configure on https://statistics-for-strava-docs.robiningelbrecht.be/#/configuration/custom-gear      
-    customGear: []
-    # Optional, used to enrich recording devices with data that cannot be configured in Strava.  
-    recordingDevices:
-      # The recording device ID.
-      # Open the recording device details popup (click the question-mark icon in the top-right corner of the recording device page) 
-      # and copy the ID shown there.
-      - gearId: 'garmin-forerunner-265'
-        # Used to calculate the relative cost per workout and hour.
-        purchasePrice:
-          amountInCents: 29950
-          currency: EUR
+  # Optional, used to enrich gear with data that cannot be configured in Strava.
+  stravaGear:
+    # The Strava gear ID.
+    # ⚠️ Do NOT copy the gear ID from the Strava URL, that value will not work.
+    # Instead, open the gear details popup (click the question-mark icon in the top-right corner of the gear page)
+    # and copy the gear ID shown there.
+    # https://statistics-for-strava-docs.robiningelbrecht.be/#/configuration/gear-maintenance?id=strava-gear-ids
+    - gearId: 'g12337767'
+      # Used to calculate the relative cost per workout and hour.
+      purchasePrice:
+        amountInCents: 123456
+        currency: 'EUR'
+  # Optional, this is useful for gear that Strava doesn't allow you to track
+  # Read how to configure on https://statistics-for-strava-docs.robiningelbrecht.be/#/configuration/custom-gear
+  customGear: []
+  # Optional, used to enrich recording devices with data that cannot be configured in Strava.
+  recordingDevices:
+    # The recording device ID.
+    # Open the recording device details popup (click the question-mark icon in the top-right corner of the recording device page)
+    # and copy the ID shown there.
+    - gearId: 'garmin-forerunner-265'
+      # Used to calculate the relative cost per workout and hour.
+      purchasePrice:
+        amountInCents: 29950
+        currency: EUR
 zwift:
   # Optional, your Zwift level (1 - 100). Will be used to render your Zwift badge. Leave empty to disable this feature
   level: null
@@ -215,7 +215,7 @@ integrations:
     # Enable or disable AI features in the UI. By default, these features are only accessible via a CLI command.
     # ⚠️ Use caution when enabling this feature if your app is publicly accessible!
     enableUI: false
-    # The provider you want to use. 
+    # The provider you want to use.
     # Allowed values: ["anthropic", "azureOpenAI", "deepseek", "gemini", "grok", "huggingFace", "ollama", "openAI", "openAILike", "openAIResponses", "mistral"]
     provider: 'PROVIDER-YOU-CHOOSE'
     configuration:
@@ -233,7 +233,7 @@ daemon:
   # ⚠️ This configuration only applies if you have set up the daemon container:
   #   https://statistics-for-strava-docs.robiningelbrecht.be/#/getting-started/installation?id=docker-composeyml
   cron:
-      # Action name. Allowed values: importDataAndBuildApp, gearMaintenanceNotification, appUpdateAvailableNotification
+    # Action name. Allowed values: importDataAndBuildApp, gearMaintenanceNotification, appUpdateAvailableNotification
     - action: 'importDataAndBuildApp'
       # Cron expression specifying when the action should run.
       # Example: '0 14 * * *' runs every day at 14:00 (2 PM).

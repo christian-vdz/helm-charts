@@ -21,7 +21,7 @@ components:
     # List of gear ids this component is attached to
     # See: https://statistics-for-strava-docs.robiningelbrecht.be/#/configuration/gear-maintenance?id=strava-gear-ids to obtain this ID
     attachedTo:
-      - 'gxxxxxxxx' # May not always start with g 
+      - 'gxxxxxxxx'  # May not always start with g
       - 'gxxxxxxxx'
     # Optional, will be displayed in the UI along your component
     purchasePrice:
@@ -46,7 +46,7 @@ components:
           # - daysUsed (every x days used),
           # - days (every x days),
           unit: km
-# If you don't want to reference images, set gears to an empty array: `gears: []`       
+# If you don't want to reference images, set gears to an empty array: `gears: []`
 gears:
   # Optional reference to an image. Will be used in the UI.
   # The image must be located in the `storage/gear-maintenance` volume.
