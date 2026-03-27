@@ -1,3 +1,7 @@
+## 0.6.0 (2026-03-27)
+
+This was a version bump only for statistics-for-strava to align it with other projects, there were no code changes.
+
 ## 0.5.1 (2026-03-27)
 
 ### 🩹 Fixes
