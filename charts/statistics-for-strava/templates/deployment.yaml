@@ -66,6 +66,38 @@ spec:
           resources:
             {{- toYaml . | nindent 12 }}
           {{- end }}
+        - name: {{ .Chart.Name }}-daemon
+          image: "{{ .Values.app.image.repository }}:{{ .Values.app.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.app.image.pullPolicy }}
+          command: ["bin/console"]
+          args: ["app:daemon:run"]
+          volumeMounts:
+            - name: {{ include "app.fullname" . }}-config
+              mountPath: /var/www/config/app
+            - name: {{ include "app.fullname" . }}-claim0
+              mountPath: /var/www/storage/database
+            - name: {{ include "app.fullname" . }}-claim0
+              mountPath: /var/www/storage/files
+            - name: {{ include "app.fullname" . }}-build
+              mountPath: /var/www/build
+          env:
+            - name: TZ
+              value: {{ .Values.timezone }}
+          envFrom:
+            - secretRef:
+            {{- if not .Values.strava.useExistingSecret }}
+                name: {{ include "app.fullname" . }}
+            {{- else }}
+                name: {{ .Values.strava.existingSecretName }}
+            {{- end }}
+          {{- with .Values.securityContext }}
+          securityContext:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          {{- with .Values.app.livenessProbe }}
+          resources:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
       volumes:
         - name: {{ include "app.fullname" . }}-config
           configMap:
