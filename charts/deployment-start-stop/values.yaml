@@ -1,0 +1,32 @@
+nameOverride: ""
+fullnameOverride: ""
+
+deploymentsToScale: []
+# - name: sample-app-a
+#   namespace: default
+# - name: sample-app-b
+#   namespace: app-b
+
+cronjob:
+  startSchedule: "0 7 * * *"
+  stopSchedule: "0 23 * * *"
+  timeZone: Europe/Paris
+  image:
+    pullPolicy: IfNotPresent
+    repository: alpine/kubectl
+    tag: ""  # Defaults to Kubernetes version
+  resources: {}
+  # requests:
+  #   cpu: 50m
+  #   memory: 64Mi
+  # limits:
+  #   cpu: 1000m
+  #   memory: 2048Mi
+
+securityContext: {}
+# capabilities:
+#   drop:
+#   - ALL
+# readOnlyRootFilesystem: true
+# runAsNonRoot: true
+# runAsUser: 1000

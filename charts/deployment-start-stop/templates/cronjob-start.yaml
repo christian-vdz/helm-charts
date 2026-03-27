@@ -1,0 +1,34 @@
+{{- if .Values.deploymentsToScale }}
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: {{ include "app.fullname" . }}-start-deployments
+  labels:
+    {{- include "app.labels" . | nindent 4 }}
+spec:
+  schedule: {{ .Values.cronjob.startSchedule | quote }}
+  timeZone: {{ .Values.cronjob.timeZone | quote }}
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          restartPolicy: Never
+          serviceAccountName: {{ include "app.fullname" . }}
+          containers:
+            - name: scale-up
+              image: "{{ .Values.cronjob.image.repository }}:{{ trimPrefix "v" (default .Capabilities.KubeVersion.Version .Values.cronjob.image.tag) }}"
+              imagePullPolicy: {{ .Values.cronjob.image.pullPolicy }}
+              command:
+                - /bin/sh
+                - -c
+                - |
+                  {{- include "cronjob.scaleUpCommands" . | trim | nindent 18 -}}
+              {{- with .Values.securityContext }}
+              securityContext:
+                {{- toYaml . | nindent 16 }}
+              {{- end }}
+              {{- with .Values.cronjob.resources }}
+              resources:
+                {{- toYaml . | nindent 16 }}
+              {{- end }}
+{{- end }}

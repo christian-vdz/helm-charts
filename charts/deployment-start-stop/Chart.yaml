@@ -1,0 +1,14 @@
+apiVersion: v2
+name: deployment-start-stop
+version: 0.1.0
+description: A Helm chart designed to scale deployments up or down, in order to start or stop them.
+type: application
+
+home: https://github.com/christian-vdz/helm-charts/charts/deployment-start-stop
+sources: 
+  - https://github.com/hhftechnology/deployment-start-stop
+
+maintainers:
+  - name: christian-vdz
+    email: christian@slashops.fr
+    url: https://github.com/christian-vdz

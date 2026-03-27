@@ -1,0 +1,55 @@
+{
+  "name": "deployment-start-stop",
+  "version": "0.1.0",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "charts/deployment-start-stop",
+  "scripts": {
+    "pre-release": "nx run deployment-start-stop:sync-chart-version && nx run deployment-start-stop:sync-docs-version"
+  },
+  "tags": [
+    "helm"
+  ],
+  "nx": {
+    "targets": {
+      "lint": {
+        "executor": "nx:run-commands",
+        "options": {
+          "command": "helm lint --strict .",
+          "cwd": "charts/deployment-start-stop"
+        }
+      },
+      "sync-chart-version": {
+        "executor": "nx:run-commands",
+        "options": {
+          "command": "node ../../sync-chart-version.js deployment-start-stop",
+          "cwd": "charts/deployment-start-stop"
+        }
+      },
+      "sync-docs-version": {
+        "executor": "nx:run-commands",
+        "options": {
+          "command": "node ../../sync-docs-version.js deployment-start-stop",
+          "cwd": "charts/deployment-start-stop"
+        }
+      },
+      "package": {
+        "executor": "@nx-extensions/helm:package",
+        "outputs": [
+          "{options.outputFolder}"
+        ],
+        "options": {
+          "chartFolder": "charts/deployment-start-stop",
+          "outputFolder": "{workspaceRoot}/dist/charts/{projectRoot}",
+          "push": true,
+          "remote": "oci://ghcr.io/christian-vdz/helm-charts",
+          "dependencies": {
+            "update": true,
+            "build": true,
+            "repositories": []
+          }
+        }
+      }
+    }
+  }
+}
