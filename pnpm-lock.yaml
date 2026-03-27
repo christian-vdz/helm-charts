@@ -21,8 +21,9 @@ importers:
         specifier: 22.6.2
         version: 22.6.2
 
-  charts/statistics-for-strava: {}
   charts/deployment-start-stop: {}
+
+  charts/statistics-for-strava: {}
 
 packages:
 
