@@ -43,7 +43,7 @@ jobs:
         run: pnpm run biome:check
 
       - name: Run lint and test
-        run: npx nx run-many -t lint test
+        run: npx nx affected -t lint test
 
   release:
     needs: lint-and-test
@@ -85,20 +85,24 @@ jobs:
       - name: Dry run NX release
         run: CI=true npx nx release --dry-run
 
+      - name: Wait 5 seconds
+        if: github.ref == 'refs/heads/main'
+        run: sleep 5
+
       - name: Run NX release
         if: github.ref == 'refs/heads/main'
         run: CI=true npx nx release --skip-publish
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Chart pre-release tasks
+      - name: Chart post-release tasks
         if: github.ref == 'refs/heads/main'
         run: |
-          npx nx run-many -t pre-release --projects=charts/*
+          npx nx run-many -t post-release --projects=charts/*
           git add charts/ docs/
           # if there are changes to commit, commit and push them
           if [ -n "$(git status --porcelain)" ]; then
-            git commit -m "chore(pre-release): sync chart and docs versions"
+            git commit -m "chore(post-release): sync chart and docs versions"
             git push
           else
             echo "No changes detected. Skipping commit."

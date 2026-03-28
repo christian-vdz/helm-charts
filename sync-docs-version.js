@@ -23,7 +23,12 @@ const versionMatch = chartYaml.match(versionRegex);
 const appVersionMatch = chartYaml.match(appVersionRegex);
 
 const newVersion = versionMatch[1];
-const newAppVersion = appVersionMatch[1];
+if (appVersionMatch && appVersionMatch[1]) {
+  newAppVersion = appVersionMatch[1];
+} else {
+  console.warn(`Warning: appVersion not found in ${chartName}/Chart.yaml. Skipping appVersion update in README.md.`);
+  newAppVersion = null;
+}
 
 // Read README.md
 let readmeContent = fs.readFileSync(readmePath, 'utf8');
@@ -35,10 +40,12 @@ readmeContent = readmeContent.replace(versionBadgeTextRegex, `![Version: ${newVe
 readmeContent = readmeContent.replace(versionBadgeUrlRegex, `(https://img.shields.io/badge/Version-${newVersion}-informational?style=flat-square)`);
 
 // Update appVersion badge and URL
-const appVersionBadgeTextRegex = /!\[AppVersion: v[^\]]+\]/;
-const appVersionBadgeUrlRegex = /\(https:\/\/img\.shields\.io\/badge\/AppVersion-v[^"]+-informational\?style=flat-square\)/;
-readmeContent = readmeContent.replace(appVersionBadgeTextRegex, `![AppVersion: ${newAppVersion}]`);
-readmeContent = readmeContent.replace(appVersionBadgeUrlRegex, `(https://img.shields.io/badge/AppVersion-${newAppVersion}-informational?style=flat-square)`);
+if (newAppVersion) {
+  const appVersionBadgeTextRegex = /!\[AppVersion: v[^\]]+\]/;
+  const appVersionBadgeUrlRegex = /\(https:\/\/img\.shields\.io\/badge\/AppVersion-v[^"]+-informational\?style=flat-square\)/;
+  readmeContent = readmeContent.replace(appVersionBadgeTextRegex, `![AppVersion: ${newAppVersion}]`);
+  readmeContent = readmeContent.replace(appVersionBadgeUrlRegex, `(https://img.shields.io/badge/AppVersion-${newAppVersion}-informational?style=flat-square)`);
+}
 
 // Update helm install command
 const installCommandRegex = /helm install .* --version [0-9]+\.[0-9]+\.[0-9]+/;

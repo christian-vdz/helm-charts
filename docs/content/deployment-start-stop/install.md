@@ -25,5 +25,5 @@ statefulSetToScale:
 
 ```sh
 helm install -n default my-deployment-start-stop -f values.yaml \
-  oci://ghcr.io/christian-vdz/helm-charts/deployment-start-stop --version 0.1.0
+  oci://ghcr.io/christian-vdz/helm-charts/deployment-start-stop --version 0.2.0
 ```

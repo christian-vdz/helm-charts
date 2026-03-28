@@ -1,11 +1,11 @@
 {
   "name": "statistics-for-strava",
-  "version": "0.6.0",
+  "version": "0.5.1",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "library",
   "sourceRoot": "charts/statistics-for-strava",
   "scripts": {
-    "pre-release": "nx run statistics-for-strava:sync-chart-version && nx run statistics-for-strava:sync-docs-version"
+    "post-release": "nx run statistics-for-strava:sync-chart-version && nx run statistics-for-strava:sync-docs-version"
   },
   "tags": [
     "helm"

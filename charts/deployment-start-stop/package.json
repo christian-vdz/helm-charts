@@ -5,7 +5,7 @@
   "projectType": "library",
   "sourceRoot": "charts/deployment-start-stop",
   "scripts": {
-    "pre-release": "nx run deployment-start-stop:sync-chart-version && nx run deployment-start-stop:sync-docs-version"
+    "post-release": "nx run deployment-start-stop:sync-chart-version && nx run deployment-start-stop:sync-docs-version"
   },
   "tags": [
     "helm"
