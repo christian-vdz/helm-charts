@@ -7,6 +7,10 @@ deploymentsToScale: []
 # - name: sample-app-b
 #   namespace: app-b
 
+statefulSetToScale: []
+# - name: sample-app-c
+#   namespace: app-c
+
 cronjob:
   startSchedule: "0 7 * * *"
   stopSchedule: "0 23 * * *"

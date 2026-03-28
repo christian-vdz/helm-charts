@@ -16,6 +16,9 @@ deploymentsToScale:
     namespace: default
   - name: sample-app-b
     namespace: app-b
+statefulSetToScale:
+  - name: sample-app-c
+    namespace: app-c
 ```
 
 ## Install

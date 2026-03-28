@@ -23,5 +23,6 @@ prev: deployment-start-stop/install
 | podLabels | object | `{}` |
 | podSecurityContext | object | `{}` |
 | securityContext | object | `{}` |
+| statefulSetToScale | list | `[]` |
 | resources | object | `{}` |
 | tolerations | list | `[]` |

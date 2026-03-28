@@ -57,6 +57,9 @@ Scale down command
 {{- range .Values.deploymentsToScale }}
 kubectl scale deployment -n {{ .namespace }} {{ .name }} --replicas=0; {{/* Use semicolon to separate commands */}}
 {{- end }}
+{{- range .Values.statefulSetToScale }}
+kubectl scale statefulset -n {{ .namespace }} {{ .name }} --replicas=0; {{/* Use semicolon to separate commands */}}
+{{- end }}
 {{- end }}
 
 {{/*
@@ -65,5 +68,8 @@ Scale up command
 {{- define "cronjob.scaleUpCommands" -}}
 {{- range .Values.deploymentsToScale }}
 kubectl scale deployment -n {{ .namespace }} {{ .name }} --replicas=1; {{/* Use semicolon to separate commands */}}
+{{- end }}
+{{- range .Values.statefulSetToScale }}
+kubectl scale statefulset -n {{ .namespace }} {{ .name }} --replicas=1; {{/* Use semicolon to separate commands */}}
 {{- end }}
 {{- end }}
