@@ -1,3 +1,9 @@
+## 0.5.4 (2026-04-13)
+
+### 🩹 Fixes
+
+- remove recreate strategy ([6a863c2](https://github.com/christian-vdz/helm-charts/commit/6a863c2))
+
 ## 0.5.3 (2026-04-13)
 
 ### 🩹 Fixes
