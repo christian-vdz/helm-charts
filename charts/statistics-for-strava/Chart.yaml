@@ -8,7 +8,7 @@ icon: https://github.com/robiningelbrecht/statistics-for-strava/blob/master/publ
 home: https://github.com/christian-vdz/helm-charts/charts/statistics-for-strava
 sources: 
   - https://github.com/hhftechnology/statistics-for-strava
-appVersion: "v4.7.5"
+appVersion: "v4.7.6"
 
 maintainers:
   - name: christian-vdz
