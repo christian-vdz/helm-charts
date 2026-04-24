@@ -20,7 +20,7 @@
   "devDependencies": {
     "@biomejs/biome": "^2.4.8",
     "@nx-extensions/helm": "^1.1.0",
-    "@nx/js": "22.6.5",
-    "nx": "22.6.5"
+    "@nx/js": "22.7.0",
+    "nx": "22.7.0"
   }
 }
