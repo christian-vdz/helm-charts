@@ -1,6 +1,6 @@
 apiVersion: v2
 name: statistics-for-strava
-version: 0.5.4
+version: 0.5.5
 description: A Helm chart for Statistics for Strava, a self-hosted web application that provides insights and analytics for Strava activities.
 type: application
 
