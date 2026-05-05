@@ -1,3 +1,9 @@
+## 0.5.6 (2026-05-05)
+
+### 🩹 Fixes
+
+- bump to v4.7.9 ([cfdfbe1](https://github.com/christian-vdz/helm-charts/commit/cfdfbe1))
+
 ## 0.5.5 (2026-04-28)
 
 ### 🩹 Fixes
