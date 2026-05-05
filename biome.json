@@ -8,7 +8,7 @@
   },
   "files": {
     "ignoreUnknown": false,
-    "includes": ["**/*.json", "**/*.jsonc", "**/*.md", "**/*.yaml", "**/*.yml"]
+    "includes": ["**/*.json", "**/*.jsonc", "**/*.md", "**/*.yaml", "**/*.yml", "!docs"]
   },
   "formatter": {
     "enabled": true,

@@ -86,7 +86,7 @@
 
 ### 🩹 Fixes
 
-- bump to statistics-for-strava [v4.7.4](https://github.com/robiningelbrecht/statistics-for-strava/releases/tag/v4.7.4) ([72651b6](https://github.com/christian-vdz/helm-charts/commit/72651b6))  
+- bump to statistics-for-strava [v4.7.4](https://github.com/robiningelbrecht/statistics-for-strava/releases/tag/v4.7.4) ([72651b6](https://github.com/christian-vdz/helm-charts/commit/72651b6))
 
 ## 0.2.1 (2026-03-22)
 
