@@ -42,5 +42,5 @@ config:
 
 ```sh
 helm install -n default my-statistics-for-strava -f values.yaml \
-  oci://ghcr.io/christian-vdz/helm-charts/statistics-for-strava --version 0.5.7
+  oci://ghcr.io/christian-vdz/helm-charts/statistics-for-strava --version 0.5.8
 ```
