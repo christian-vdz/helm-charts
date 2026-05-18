@@ -1,0 +1,114 @@
+nameOverride: ""
+fullnameOverride: ""
+
+baseUrl: localhost
+replicaCount: 1
+
+papra:
+  # Papra Auth Secret. Auto generated if not provided.
+  authSecret: ""
+  # Set to true to use an existing secret instead of creating a new one with the Auth Secret.
+  useExistingSecret: false
+  existingSecretName: ""
+
+  extraEnv: []
+    # - name: AUTH_IS_REGISTRATION_ENABLED
+    #   value: "true"
+    # - name: AUTH_IS_PASSWORD_RESET_ENABLED
+    #   value: "true"
+    # - name: AUTH_IS_EMAIL_VERIFICATION_REQUIRED
+    #   value: "false"
+    # - name: AUTH_SHOW_LEGAL_LINKS
+    #   value: "false"
+    # - name: SMTP_HOST
+    #   value: ""
+    # - name: SMTP_PORT
+    #   value: "587"
+    # - name: SMTP_USER
+    #   value: ""
+    # - name: SMTP_PASSWORD
+    #   value: ""
+    # - name: SMTP_SECURE
+    #   value: "false"
+    # - name: SMTP_JSON_CONFIG
+    #   value: ""
+  extraEnvFrom: []
+    # - secretRef:
+    #     name: papra-extra-env
+
+app:
+  image:
+    pullPolicy: IfNotPresent
+    repository: ghcr.io/papra-hq/papra
+    tag: "" # Defaults to chart <appVersion>-rootless
+  port: 1221
+  readinessProbe:
+    httpGet:
+      path: /
+      port: http
+  livenessProbe:
+    httpGet:
+      path: /
+      port: http
+    initialDelaySeconds: 60
+  persistence:
+    enabled: true
+    # storageClass: "standard"
+    accessMode: ReadWriteOnce
+    size: 1Gi
+  resources:
+    requests:
+      cpu: 50m
+      memory: 64Mi
+    # limits:
+    #   cpu: 1000m
+    #   memory: 2048Mi
+
+service:
+  type: ClusterIP
+  port: 1221
+
+httpRoute:
+  enabled: false
+  annotations: {}
+  parentRefs:
+    - name: gateway
+      sectionName: http
+  rules:
+    - matches:
+      - path:
+          type: PathPrefix
+          value: /headers
+  extraHostnames: []
+    # - papra.local
+
+ingress:
+  enabled: false
+  className: ""
+  annotations: {}
+  tls: []
+  extraHosts: []
+    # - host: papra.local
+    #   paths:
+    #     - path: /
+    #       pathType: ImplementationSpecific
+
+podLabels: {}
+podAnnotations: {}
+
+podSecurityContext: {}
+  # fsGroup: 2000
+
+securityContext: {}
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  # runAsUser: 1000
+
+affinity: {}
+nodeSelector: {}
+tolerations: []
+
+imagePullSecrets: []

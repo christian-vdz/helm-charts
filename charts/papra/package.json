@@ -1,0 +1,55 @@
+{
+  "name": "papra",
+  "version": "0.1.0",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "charts/papra",
+  "scripts": {
+    "post-release": "nx run papra:sync-chart-version && nx run papra:sync-docs-version"
+  },
+  "tags": [
+    "helm"
+  ],
+  "nx": {
+    "targets": {
+      "lint": {
+        "executor": "nx:run-commands",
+        "options": {
+          "command": "helm lint --strict .",
+          "cwd": "charts/papra"
+        }
+      },
+      "sync-chart-version": {
+        "executor": "nx:run-commands",
+        "options": {
+          "command": "node ../../sync-chart-version.js papra",
+          "cwd": "charts/papra"
+        }
+      },
+      "sync-docs-version": {
+        "executor": "nx:run-commands",
+        "options": {
+          "command": "node ../../sync-docs-version.js papra",
+          "cwd": "charts/papra"
+        }
+      },
+      "package": {
+        "executor": "@nx-extensions/helm:package",
+        "outputs": [
+          "{options.outputFolder}"
+        ],
+        "options": {
+          "chartFolder": "charts/papra",
+          "outputFolder": "{workspaceRoot}/dist/charts/{projectRoot}",
+          "push": true,
+          "remote": "oci://ghcr.io/christian-vdz/helm-charts",
+          "dependencies": {
+            "update": true,
+            "build": true,
+            "repositories": []
+          }
+        }
+      }
+    }
+  }
+}
