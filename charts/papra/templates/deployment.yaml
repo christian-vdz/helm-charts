@@ -22,9 +22,9 @@ spec:
         {{- end }}
     spec:
       initContainers:
-        - name: init-folders
+        - name: init-permissions
           image: busybox
-          command: ['sh', '-c', 'mkdir -p /app/app-data/{db,documents} && chown -R 999:999 /app/app-data']
+          command: ['sh', '-c', 'chown -R 999:999 /app/app-data']
           volumeMounts:
             - name: {{ include "app.fullname" . }}-claim0
               mountPath: /app/app-data
