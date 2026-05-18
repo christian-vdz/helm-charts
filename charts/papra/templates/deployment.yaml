@@ -24,7 +24,7 @@ spec:
       initContainers:
         - name: init-folders
           image: busybox
-          command: ['sh', '-c', 'mkdir -p /app/app-data/{db,documents}']
+          command: ['sh', '-c', 'mkdir -p /app/app-data/{db,documents} && chown -R 999:999 /app/app-data']
           volumeMounts:
             - name: {{ include "app.fullname" . }}-claim0
               mountPath: /app/app-data
