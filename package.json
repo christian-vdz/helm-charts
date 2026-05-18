@@ -14,11 +14,10 @@
     "release": "nx release",
     "release:version": "nx release version",
     "release:changelog": "nx release changelog",
-    "release:publish": "nx release publish",
     "release:dry-run": "nx release --dry-run"
   },
   "devDependencies": {
-    "@biomejs/biome": "^2.4.8",
+    "@biomejs/biome": "^2.4.15",
     "@nx-extensions/helm": "^1.1.0",
     "@nx/js": "22.7.2",
     "nx": "22.7.2"

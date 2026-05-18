@@ -9,7 +9,7 @@ importers:
   .:
     devDependencies:
       '@biomejs/biome':
-        specifier: ^2.4.8
+        specifier: ^2.4.15
         version: 2.4.15
       '@nx-extensions/helm':
         specifier: ^1.1.0
