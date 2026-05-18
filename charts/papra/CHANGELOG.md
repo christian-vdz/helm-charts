@@ -1,3 +1,9 @@
+## 0.2.3 (2026-05-18)
+
+### 🩹 Fixes
+
+- baseurl setting ([24384dd](https://github.com/christian-vdz/helm-charts/commit/24384dd))
+
 ## 0.2.2 (2026-05-18)
 
 ### 🩹 Fixes
