@@ -1,3 +1,9 @@
+## 0.6.0 (2026-05-18)
+
+### 🚀 Features
+
+- single volume for all data ([6f2c826](https://github.com/christian-vdz/helm-charts/commit/6f2c826))
+
 ## 0.5.9 (2026-05-15)
 
 ### 🩹 Fixes
