@@ -1,7 +1,7 @@
 nameOverride: ""
 fullnameOverride: ""
 
-baseUrl: localhost
+baseUrl: http://localhost:1221
 replicaCount: 1
 
 papra:

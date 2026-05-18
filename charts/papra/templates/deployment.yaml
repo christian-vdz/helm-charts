@@ -41,7 +41,7 @@ spec:
               mountPath: /app/app-data
           env:
             - name: APP_BASE_URL
-              value: "http://{{ .Values.baseUrl }}:{{ .Values.app.port }}"
+              value: "{{ .Values.baseUrl }}"
             - name: PORT
               value: "{{ .Values.app.port }}"
           {{- with .Values.papra.extraEnv }}
