@@ -1,6 +1,6 @@
 apiVersion: v2
 name: papra
-version: 0.2.2
+version: 0.2.3
 description: A Helm chart for Papra, a minimalistic document management and archiving platform.
 type: application
 
