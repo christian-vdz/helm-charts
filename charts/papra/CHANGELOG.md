@@ -1,3 +1,9 @@
+## 0.2.4 (2026-05-18)
+
+### 🩹 Fixes
+
+- chown only ([7805888](https://github.com/christian-vdz/helm-charts/commit/7805888))
+
 ## 0.2.3 (2026-05-18)
 
 ### 🩹 Fixes

@@ -1,6 +1,6 @@
 {
   "name": "papra",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "library",
   "sourceRoot": "charts/papra",

@@ -1,3 +1,9 @@
+## 0.6.1 (2026-05-18)
+
+### 🩹 Fixes
+
+- use subpaths ([42ea9a1](https://github.com/christian-vdz/helm-charts/commit/42ea9a1))
+
 ## 0.6.0 (2026-05-18)
 
 ### 🚀 Features
