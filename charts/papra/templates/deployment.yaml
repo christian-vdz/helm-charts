@@ -21,6 +21,13 @@ spec:
           {{- toYaml . | nindent 8 }}
         {{- end }}
     spec:
+      initContainers:
+        - name: init-folders
+          image: busybox
+          command: ['sh', '-c', 'mkdir -p /app/app-data/{db,documents}']
+          volumeMounts:
+            - name: {{ include "app.fullname" . }}-claim0
+              mountPath: /app/app-data
       containers:
         - name: {{ .Chart.Name }}-app
           image: "{{ .Values.app.image.repository }}:{{ .Values.app.image.tag | default .Chart.AppVersion }}-rootless"
@@ -31,7 +38,7 @@ spec:
               protocol: TCP
           volumeMounts:
             - name: {{ include "app.fullname" . }}-claim0
-              mountPath: /app-data
+              mountPath: /app/app-data
           env:
             - name: APP_BASE_URL
               value: "http://{{ .Values.baseUrl }}:{{ .Values.app.port }}"
