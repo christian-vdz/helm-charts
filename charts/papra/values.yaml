@@ -11,6 +11,8 @@ papra:
   useExistingSecret: false
   existingSecretName: ""
 
+  # Extra environment variables to set in the Papra container.
+  # https://docs.papra.app/self-hosting/configuration
   extraEnv: []
     # - name: AUTH_IS_REGISTRATION_ENABLED
     #   value: "true"

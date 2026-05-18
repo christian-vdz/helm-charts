@@ -11,9 +11,18 @@ prev: papra/install
 | app.image.pullPolicy | string | `"IfNotPresent"` |
 | app.image.repository | string | `"ghcr.io/papra-hq/papra"` |
 | app.image.tag | string | `""` |
+| app.livenessProbe.httpGet.path | string | `"/"` |
+| app.livenessProbe.httpGet.port | string | `"http"` |
+| app.livenessProbe.initialDelaySeconds | int | `60` |
+| app.persistence.accessMode | string | `"ReadWriteOnce"` |
+| app.persistence.enabled | bool | `true` |
+| app.persistence.size | string | `"1Gi"` |
 | app.port | int | `1221` |
+| app.readinessProbe.httpGet.path | string | `"/"` |
+| app.readinessProbe.httpGet.port | string | `"http"` |
 | app.resources.requests.cpu | string | `"50m"` |
 | app.resources.requests.memory | string | `"64Mi"` |
+| baseUrl | string | `"localhost"` |
 | fullnameOverride | string | `""` |
 | httpRoute.annotations | object | `{}` |
 | httpRoute.enabled | bool | `false` |
@@ -32,6 +41,8 @@ prev: papra/install
 | nodeSelector | object | `{}` |
 | papra.authSecret | string | `""` |
 | papra.existingSecretName | string | `""` |
+| papra.extraEnv | list | `[]` |
+| papra.extraEnvFrom | list | `[]` |
 | papra.useExistingSecret | bool | `false` |
 | podAnnotations | object | `{}` |
 | podLabels | object | `{}` |

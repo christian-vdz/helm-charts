@@ -15,6 +15,8 @@ prev: statistics-for-strava/import-data
 | app.livenessProbe.exec.command[1] | string | `"-f"` |
 | app.livenessProbe.exec.command[2] | string | `"http://localhost:2019/metrics"` |
 | app.livenessProbe.initialDelaySeconds | int | `60` |
+| app.persistence.accessMode | string | `"ReadWriteOnce"` |
+| app.persistence.size | string | `"1Gi"` |
 | app.port | int | `8080` |
 | app.readinessProbe.httpGet.path | string | `"/"` |
 | app.readinessProbe.httpGet.port | string | `"http"` |
