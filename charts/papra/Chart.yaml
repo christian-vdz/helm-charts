@@ -1,0 +1,16 @@
+apiVersion: v2
+name: papra
+version: 0.1.0
+description: A Helm chart for Papra, a minimalistic document management and archiving platform.
+type: application
+
+icon: https://github.com/papra-hq/papra/blob/main/.github/icon-dark.png
+home: https://github.com/christian-vdz/helm-charts/charts/papra
+sources: 
+  - https://github.com/papra-hq/papra
+appVersion: "26.4.0"
+
+maintainers:
+  - name: christian-vdz
+    email: christian@slashops.fr
+    url: https://github.com/christian-vdz

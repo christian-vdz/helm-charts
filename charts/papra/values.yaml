@@ -1,0 +1,74 @@
+nameOverride: ""
+fullnameOverride: ""
+
+replicaCount: 1
+
+papra:
+  # Papra Auth Secret. Required if useExistingSecret is false.
+  authSecret: ""
+  # Set to true to use an existing secret instead of creating a new one with the Auth Secret.
+  useExistingSecret: false
+  existingSecretName: ""
+
+app:
+  image:
+    pullPolicy: IfNotPresent
+    repository: ghcr.io/papra-hq/papra
+    tag: "" # Defaults to chart <appVersion>-rootless
+  port: 1221
+  resources:
+    requests:
+      cpu: 50m
+      memory: 64Mi
+    # limits:
+    #   cpu: 1000m
+    #   memory: 2048Mi
+
+service:
+  type: ClusterIP
+  port: 1221
+
+httpRoute:
+  enabled: false
+  annotations: {}
+  parentRefs:
+    - name: gateway
+      sectionName: http
+  rules:
+    - matches:
+      - path:
+          type: PathPrefix
+          value: /headers
+  extraHostnames: []
+    # - papra.local
+
+ingress:
+  enabled: false
+  className: ""
+  annotations: {}
+  tls: []
+  extraHosts: []
+    # - host: papra.local
+    #   paths:
+    #     - path: /
+    #       pathType: ImplementationSpecific
+
+podLabels: {}
+podAnnotations: {}
+
+podSecurityContext: {}
+  # fsGroup: 2000
+
+securityContext: {}
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  # runAsUser: 1000
+
+affinity: {}
+nodeSelector: {}
+tolerations: []
+
+imagePullSecrets: []

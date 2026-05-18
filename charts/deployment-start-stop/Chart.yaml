@@ -6,7 +6,7 @@ type: application
 
 home: https://github.com/christian-vdz/helm-charts/charts/deployment-start-stop
 sources: 
-  - https://github.com/hhftechnology/deployment-start-stop
+  - https://github.com/christian-vdz/helm-charts/charts/deployment-start-stop
 
 maintainers:
   - name: christian-vdz
