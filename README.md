@@ -6,7 +6,7 @@ A collection of Helm charts for deploying applications on Kubernetes.
 
 ## 📦 Available Charts
 
-| Chart                          | Description                                                                 |
+| Chart | Description |
 |--------------------------------|-----------------------------------------------------------------------------|
 | [`deployment-start-stop`](charts/deployment-start-stop) | A Helm chart designed to scale deployments up or down |
 | [`papra`](charts/papra) | A helm chart for [Papra](https://github.com/papra-hq/papra) |
