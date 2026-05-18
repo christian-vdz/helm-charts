@@ -1,6 +1,6 @@
 # statistics-for-strava
 
-![Version: 0.6.0](https://img.shields.io/badge/Version-0.6.0-informational?style=flat-square) ![AppVersion: v4.7.12](https://img.shields.io/badge/AppVersion-v4.7.12-informational?style=flat-square)
+![Version: 0.6.1](https://img.shields.io/badge/Version-0.6.1-informational?style=flat-square) ![AppVersion: v4.7.12](https://img.shields.io/badge/AppVersion-v4.7.12-informational?style=flat-square)
 
 A Helm chart for Statistics for Strava, a self-hosted web application that provides insights and analytics for Strava activities.
 
@@ -10,4 +10,4 @@ https://statistics-for-strava-docs.robiningelbrecht.be/#/getting-started/prerequ
 
 ## Install
 
-`helm install my-statistics-for-strava oci://ghcr.io/christian-vdz/helm-charts/statistics-for-strava --version 0.6.0`
+`helm install my-statistics-for-strava oci://ghcr.io/christian-vdz/helm-charts/statistics-for-strava --version 0.6.1`
