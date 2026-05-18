@@ -2,9 +2,13 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: {{ include "app.fullname" . }}-claim0
+  labels:
+    {{- include "app.labels" . | nindent 4 }}
 spec:
-  accessModes:
-    - ReadWriteOnce
+  accessModes: [{{ .Values.app.persistence.accessMode }}]
   resources:
     requests:
-      storage: 1Gi
+      storage: {{ .Values.app.persistence.size }}
+  {{- if .Values.app.persistence.storageClass }}
+  storageClassName: {{ .Values.app.persistence.storageClass }}
+  {{- end }}

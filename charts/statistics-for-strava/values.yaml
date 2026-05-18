@@ -2,7 +2,7 @@ nameOverride: ""
 fullnameOverride: ""
 
 replicaCount: 1
-httpHost: localhost
+baseUrl: localhost
 timezone: Europe/Paris
 
 strava:
@@ -50,6 +50,10 @@ app:
         - -f
         - http://localhost:2019/metrics
     initialDelaySeconds: 60
+  persistence:
+    # storageClass: "standard"
+    accessMode: ReadWriteOnce
+    size: 1Gi
   resources:
     requests:
       cpu: 50m

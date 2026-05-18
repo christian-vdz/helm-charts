@@ -27,7 +27,7 @@ prev: statistics-for-strava/import-data
 | gearMaintenanceConfig.hashtagPrefix | string | `"sfs"` |
 | gearMaintenanceConfig.components | list | `[]` |
 | gearMaintenanceConfig.gears | list | `[]` |
-| httpHost | string | `"localhost"` |
+| baseUrl | string | `"localhost"` |
 | httpRoute.annotations | object | `{}` |
 | httpRoute.enabled | bool | `false` |
 | httpRoute.extraHostnames | list | `[]` |
