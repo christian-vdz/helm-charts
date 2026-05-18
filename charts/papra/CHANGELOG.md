@@ -1,3 +1,9 @@
+## 0.2.1 (2026-05-18)
+
+### 🩹 Fixes
+
+- init folders and correct volume mountPath ([3a4be29](https://github.com/christian-vdz/helm-charts/commit/3a4be29))
+
 ## 0.2.0 (2026-05-18)
 
 ### 🚀 Features
