@@ -34,10 +34,13 @@ spec:
               mountPath: /var/www/config/app
             - name: {{ include "app.fullname" . }}-claim0
               mountPath: /var/www/storage/database
+              subPath: storage
             - name: {{ include "app.fullname" . }}-claim0
               mountPath: /var/www/storage/files
+              subPath: storage
             - name: {{ include "app.fullname" . }}-claim0
               mountPath: /var/www/build
+              subPath: build
           env:
             - name: TZ
               value: {{ .Values.timezone }}
@@ -74,10 +77,13 @@ spec:
               mountPath: /var/www/config/app
             - name: {{ include "app.fullname" . }}-claim0
               mountPath: /var/www/storage/database
+              subPath: storage
             - name: {{ include "app.fullname" . }}-claim0
               mountPath: /var/www/storage/files
+              subPath: storage
             - name: {{ include "app.fullname" . }}-claim0
               mountPath: /var/www/build
+              subPath: build
           env:
             - name: TZ
               value: {{ .Values.timezone }}
