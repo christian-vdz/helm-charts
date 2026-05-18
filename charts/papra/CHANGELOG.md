@@ -1,3 +1,9 @@
+## 0.2.2 (2026-05-18)
+
+### 🩹 Fixes
+
+- chown to correct user ([01c340e](https://github.com/christian-vdz/helm-charts/commit/01c340e))
+
 ## 0.2.1 (2026-05-18)
 
 ### 🩹 Fixes
