@@ -1,3 +1,9 @@
+## 0.6.2 (2026-05-19)
+
+### 🩹 Fixes
+
+- use different subpaths ([daeaed6](https://github.com/christian-vdz/helm-charts/commit/daeaed6))
+
 ## 0.6.1 (2026-05-18)
 
 ### 🩹 Fixes
