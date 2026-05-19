@@ -34,10 +34,10 @@ spec:
               mountPath: /var/www/config/app
             - name: {{ include "app.fullname" . }}-claim0
               mountPath: /var/www/storage/database
-              subPath: storage
+              subPath: database
             - name: {{ include "app.fullname" . }}-claim0
               mountPath: /var/www/storage/files
-              subPath: storage
+              subPath: files
             - name: {{ include "app.fullname" . }}-claim0
               mountPath: /var/www/build
               subPath: build
@@ -77,10 +77,10 @@ spec:
               mountPath: /var/www/config/app
             - name: {{ include "app.fullname" . }}-claim0
               mountPath: /var/www/storage/database
-              subPath: storage
+              subPath: database
             - name: {{ include "app.fullname" . }}-claim0
               mountPath: /var/www/storage/files
-              subPath: storage
+              subPath: files
             - name: {{ include "app.fullname" . }}-claim0
               mountPath: /var/www/build
               subPath: build
