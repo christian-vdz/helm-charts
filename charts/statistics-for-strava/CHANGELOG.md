@@ -1,3 +1,9 @@
+## 0.8.2 (2026-06-12)
+
+### 🩹 Fixes
+
+- bump to v4.8.7 ([2212e0b](https://github.com/christian-vdz/helm-charts/commit/2212e0b))
+
 ## 0.8.1 (2026-06-04)
 
 ### 🩹 Fixes
