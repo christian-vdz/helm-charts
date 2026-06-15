@@ -23,8 +23,6 @@ importers:
 
   charts/deployment-start-stop: {}
 
-  charts/papra: {}
-
   charts/statistics-for-strava: {}
 
 packages:
