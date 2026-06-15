@@ -8,7 +8,7 @@ next: statistics-for-strava/import-data
 
 ## Prerequisites
 
-See https://statistics-for-strava-docs.robiningelbrecht.be/#/getting-started/prerequisites
+See https://docs.getsfs.app/#/getting-started/prerequisites
 
 ## Required values
 
@@ -29,14 +29,18 @@ strava:
 config:
   general:
     athlete:
+      firstName: 'John'
+      lastName: 'Doe'
       birthday: '2000-01-01'
+      # Your gender. 'M', 'F' or 'X'. Used to determine activity training load
+      gender: 'M'
       weightHistory:
         "2000-01-01": 60
 ```
 
 > [!NOTE]
 > The Strava `refreshToken` will be available after first login.  
-> https://statistics-for-strava-docs.robiningelbrecht.be/#/getting-started/installation?id=obtaining-a-strava-refresh-token
+> https://docs.getsfs.app/#/getting-started/installation?id=obtaining-a-strava-refresh-token
 
 ## Install
 

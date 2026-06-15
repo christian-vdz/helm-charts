@@ -26,4 +26,4 @@ https://github.com/robiningelbrecht/statistics-for-strava
 
 ## Official documentation
 
-https://statistics-for-strava-docs.robiningelbrecht.be
+https://docs.getsfs.app
