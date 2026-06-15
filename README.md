@@ -9,7 +9,6 @@ A collection of Helm charts for deploying applications on Kubernetes.
 | Chart | Description |
 |--------------------------------|-----------------------------------------------------------------------------|
 | [`deployment-start-stop`](charts/deployment-start-stop) | A Helm chart designed to scale deployments up or down |
-| [`papra`](charts/papra) | A helm chart for [Papra](https://github.com/papra-hq/papra) |
 | [`statistics-for-strava`](charts/statistics-for-strava) | A Helm chart for [Statistics for Strava](https://github.com/robiningelbrecht/statistics-for-strava) |
 ## 📖 Documentation
 

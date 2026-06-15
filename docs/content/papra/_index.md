@@ -2,8 +2,11 @@
 title: Papra
 next: papra/install
 sidebar:
-  open: true
+  open: false
 ---
+
+> [!CAUTION]
+> This chart is **archived** and no longer maintained. It has been removed from the active workspace and will not receive updates.
 
 <img src="https://raw.githubusercontent.com/papra-hq/papra/refs/heads/main/.github/icon-dark.png" width="100" style="float: right;" alt="Papra logo">
 
