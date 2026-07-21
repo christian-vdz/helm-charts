@@ -1,3 +1,4 @@
+{{- if not .Values.cleanUpOldConfig }}
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -14,5 +15,6 @@ data:
 {{- with .Values.gearMaintenanceConfig }}
   gear-maintenance.yaml: |
 {{- toYaml . | nindent 4 }}
+{{- end }}
 {{- end }}
 {{- end }}

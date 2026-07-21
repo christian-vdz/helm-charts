@@ -30,8 +30,10 @@ spec:
               containerPort: {{ .Values.app.port }}
               protocol: TCP
           volumeMounts:
+          {{- if not .Values.cleanUpOldConfig }}
             - name: {{ include "app.fullname" . }}-config
               mountPath: /var/www/config/app
+          {{- end }}
             - name: {{ include "app.fullname" . }}-claim0
               mountPath: /var/www/storage/database
               subPath: database
