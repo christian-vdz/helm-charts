@@ -1,3 +1,9 @@
+## 1.0.1 (2026-07-21)
+
+### 🩹 Fixes
+
+- secrets and appUrl ([f069f48](https://github.com/christian-vdz/helm-charts/commit/f069f48))
+
 ## 1.0.0 (2026-07-21)
 
 ### 🚀 Features
