@@ -1,3 +1,9 @@
+## 1.0.3 (2026-07-21)
+
+### 🩹 Fixes
+
+- configmap mount on deployment ([d27a21e](https://github.com/christian-vdz/helm-charts/commit/d27a21e))
+
 ## 1.0.2 (2026-07-21)
 
 ### 🩹 Fixes

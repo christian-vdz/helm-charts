@@ -1,6 +1,6 @@
 {
   "name": "dreeve",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "library",
   "sourceRoot": "charts/dreeve",
