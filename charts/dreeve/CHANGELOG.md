@@ -1,3 +1,9 @@
+## 1.0.2 (2026-07-21)
+
+### 🩹 Fixes
+
+- configmap creation ([e4e22a5](https://github.com/christian-vdz/helm-charts/commit/e4e22a5))
+
 ## 1.0.1 (2026-07-21)
 
 ### 🩹 Fixes
