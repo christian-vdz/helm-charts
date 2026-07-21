@@ -10,5 +10,5 @@ type: docs
 
 {{< cards >}}
   {{< card link="deployment-start-stop" title="Deployment Start/Stop" icon="book-open" >}}
-  {{< card link="statistics-for-strava" title="Statistics for Strava" icon="book-open" >}}
+  {{< card link="dreeve" title="Dreeve" icon="book-open" >}}
 {{< /cards >}}

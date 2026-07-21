@@ -9,7 +9,7 @@ A collection of Helm charts for deploying applications on Kubernetes.
 | Chart | Description |
 |--------------------------------|-----------------------------------------------------------------------------|
 | [`deployment-start-stop`](charts/deployment-start-stop) | A Helm chart designed to scale deployments up or down |
-| [`statistics-for-strava`](charts/statistics-for-strava) | A Helm chart for [Statistics for Strava](https://github.com/robiningelbrecht/statistics-for-strava) |
+| [`dreeve`](charts/dreeve) | A Helm chart for [Dreeve](https://github.com/robiningelbrecht/dreeve) |
 ## 📖 Documentation
 
 https://christian-vdz.github.io/helm-charts

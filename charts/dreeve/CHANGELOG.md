@@ -1,3 +1,9 @@
+## 1.0.0 (2026-07-21)
+
+### 🚀 Features
+
+Migrate to Dreeve
+
 ## 0.8.3 (2026-06-15)
 
 ### 🩹 Fixes

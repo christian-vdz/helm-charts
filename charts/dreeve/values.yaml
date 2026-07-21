@@ -5,6 +5,13 @@ replicaCount: 1
 baseUrl: localhost
 timezone: Europe/Paris
 
+# Used to sign the admin session cookie. Set it to any long random string.
+appSecret: ""
+
+# Existing Strava users want "stravaApi" here, it keeps your current import behaviour.
+# The default is "files".
+importMode: "stravaApi"
+
 strava:
   # Strava API credentials. Required if useExistingSecret is false.
   clientId: ""
@@ -33,11 +40,15 @@ gearMaintenanceConfig:
   components: []
   gears: []
 
+# Set to true to clean up old config files that are no longer used by the app.
+# See: https://docs.dreeve.app/#/getting-started/migrating-from-v4?id=_6-clean-up-the-old-configuration
+cleanUpOldConfig: false
+
 app:
   image:
     pullPolicy: IfNotPresent
-    repository: robiningelbrecht/strava-statistics
-    tag: "" # Defaults to chart appVersion
+    repository: ghcr.io/dreeveapp/dreeve
+    tag: ""  # Defaults to chart appVersion
   port: 8080
   readinessProbe:
     httpGet:
@@ -78,7 +89,7 @@ httpRoute:
           type: PathPrefix
           value: /headers
   extraHostnames: []
-    # - statistics-for-strava.local
+    # - dreeve.local
 
 ingress:
   enabled: false
@@ -86,7 +97,7 @@ ingress:
   annotations: {}
   tls: []
   extraHosts: []
-    # - host: statistics-for-strava.local
+    # - host: dreeve.local
     #   paths:
     #     - path: /
     #       pathType: ImplementationSpecific

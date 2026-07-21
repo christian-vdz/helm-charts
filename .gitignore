@@ -12,3 +12,5 @@ modules/*/package.json
 
 # Generated artifacts
 dist
+
+.claude/worktrees

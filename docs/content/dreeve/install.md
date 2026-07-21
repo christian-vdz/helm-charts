@@ -2,19 +2,26 @@
 title: Chart installation
 type: docs
 weight: 1
-prev: statistics-for-strava
-next: statistics-for-strava/import-data
+prev: dreeve
+next: dreeve/import-data
 ---
 
 ## Prerequisites
 
-See https://docs.getsfs.app/#/getting-started/prerequisites
+See https://docs.dreeve.app/#/getting-started/prerequisites
 
 ## Required values
 
 Create `values.yaml` file.
 
 ```yaml
+# Used to sign the admin session cookie. Set it to any long random string.
+appSecret: ""
+
+# Existing Strava users want "stravaApi" here, it keeps your current import behaviour.
+# The default is "files".
+importMode: "stravaApi"
+
 strava:
   # Strava API credentials. Required if useExistingSecret is false.
   clientId: ""
@@ -38,13 +45,15 @@ config:
         "2000-01-01": 60
 ```
 
+https://docs.dreeve.app/#/getting-started/installation?id=admin-password
+
 > [!NOTE]
 > The Strava `refreshToken` will be available after first login.  
-> https://docs.getsfs.app/#/getting-started/installation?id=obtaining-a-strava-refresh-token
+> https://docs.dreeve.app/#/getting-started/installation?id=obtaining-a-strava-refresh-token
 
 ## Install
 
 ```sh
-helm install -n default my-statistics-for-strava -f values.yaml \
-  oci://ghcr.io/christian-vdz/helm-charts/statistics-for-strava --version 0.8.3
+helm install -n default my-dreeve -f values.yaml \
+  oci://ghcr.io/christian-vdz/helm-charts/dreeve --version 1.0.0
 ```

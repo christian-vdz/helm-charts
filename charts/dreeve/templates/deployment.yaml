@@ -44,6 +44,8 @@ spec:
           env:
             - name: TZ
               value: {{ .Values.timezone }}
+            - name: IMPORT_MODE
+              value: {{ .Values.importMode }}
           envFrom:
             - secretRef:
             {{- if not .Values.strava.useExistingSecret }}
@@ -87,6 +89,8 @@ spec:
           env:
             - name: TZ
               value: {{ .Values.timezone }}
+            - name: IMPORT_MODE
+              value: {{ .Values.importMode }}
           envFrom:
             - secretRef:
             {{- if not .Values.strava.useExistingSecret }}

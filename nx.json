@@ -8,7 +8,6 @@
   "release": {
     "projects": ["charts/*"],
     "projectsRelationship": "independent",
-    "releaseTagPattern": "{projectName}@v{version}",
     "version": {
       "conventionalCommits": true
     },
@@ -28,6 +27,9 @@
       "commit": true,
       "tag": true,
       "commitMessage": "chore(release): {projectName} {version}"
+    },
+    "releaseTag": {
+      "pattern": "{projectName}@v{version}"
     }
   },
   "namedInputs": {

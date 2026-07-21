@@ -1,11 +1,11 @@
 {
-  "name": "statistics-for-strava",
-  "version": "0.8.3",
+  "name": "dreeve",
+  "version": "1.0.0",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "library",
-  "sourceRoot": "charts/statistics-for-strava",
+  "sourceRoot": "charts/dreeve",
   "scripts": {
-    "post-release": "nx run statistics-for-strava:sync-chart-version && nx run statistics-for-strava:sync-docs-version"
+    "post-release": "nx run dreeve:sync-chart-version && nx run dreeve:sync-docs-version"
   },
   "tags": [
     "helm"
@@ -16,21 +16,21 @@
         "executor": "nx:run-commands",
         "options": {
           "command": "helm lint --strict .",
-          "cwd": "charts/statistics-for-strava"
+          "cwd": "charts/dreeve"
         }
       },
       "sync-chart-version": {
         "executor": "nx:run-commands",
         "options": {
-          "command": "node ../../sync-chart-version.js statistics-for-strava",
-          "cwd": "charts/statistics-for-strava"
+          "command": "node ../../sync-chart-version.js dreeve",
+          "cwd": "charts/dreeve"
         }
       },
       "sync-docs-version": {
         "executor": "nx:run-commands",
         "options": {
-          "command": "node ../../sync-docs-version.js statistics-for-strava",
-          "cwd": "charts/statistics-for-strava"
+          "command": "node ../../sync-docs-version.js dreeve",
+          "cwd": "charts/dreeve"
         }
       },
       "package": {
@@ -39,7 +39,7 @@
           "{options.outputFolder}"
         ],
         "options": {
-          "chartFolder": "charts/statistics-for-strava",
+          "chartFolder": "charts/dreeve",
           "outputFolder": "{workspaceRoot}/dist/charts/{projectRoot}",
           "push": true,
           "remote": "oci://ghcr.io/christian-vdz/helm-charts",

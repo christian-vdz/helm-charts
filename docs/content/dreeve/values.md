@@ -1,15 +1,15 @@
 ---
 title: Chart default values
 type: docs
-weight: 3
-prev: statistics-for-strava/import-data
+weight: 4
+prev: dreeve/import-data
 ---
 
 | Key | Type | Default |
 |-----|------|---------|
 | affinity | object | `{}` |
 | app.image.pullPolicy | string | `"IfNotPresent"` |
-| app.image.repository | string | `"robiningelbrecht/strava-statistics"` |
+| app.image.repository | string | `"ghcr.io/dreeveapp/dreeve"` |
 | app.image.tag | string | `""` |
 | app.livenessProbe.exec.command[0] | string | `"curl"` |
 | app.livenessProbe.exec.command[1] | string | `"-f"` |

@@ -23,7 +23,7 @@ importers:
 
   charts/deployment-start-stop: {}
 
-  charts/statistics-for-strava: {}
+  charts/dreeve: {}
 
 packages:
 
