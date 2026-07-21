@@ -18,38 +18,21 @@ Create `values.yaml` file.
 # Used to sign the admin session cookie. Set it to any long random string.
 appSecret: ""
 
-# Existing Strava users want "stravaApi" here, it keeps your current import behaviour.
-# The default is "files".
-importMode: "stravaApi"
-
-strava:
-  # Strava API credentials. Required if useExistingSecret is false.
-  clientId: ""
-  clientSecret: ""
-  refreshToken: ""
-  # Set to true to use an existing secret instead of creating a new one with the provided Strava credentials.
-  useExistingSecret: false
-  existingSecretName: ""
-
-# Override default config values. See config/default.yaml for all available options.
-# Athlete's birth and weight history dates are required for the app to import data from Strava.
-config:
-  general:
-    athlete:
-      firstName: 'John'
-      lastName: 'Doe'
-      birthday: '2000-01-01'
-      # Your gender. 'M', 'F' or 'X'. Used to determine activity training load
-      gender: 'M'
-      weightHistory:
-        "2000-01-01": 60
+admin: 
+  username: "admin"
+  passwordHash: ""
 ```
 
-https://docs.dreeve.app/#/getting-started/installation?id=admin-password
+### Admin Password Hash
 
-> [!NOTE]
-> The Strava `refreshToken` will be available after first login.  
-> https://docs.dreeve.app/#/getting-started/installation?id=obtaining-a-strava-refresh-token
+Generate with htpasswd
+
+```sh
+htpasswd -bnBC 12 "" my-secure-password | cut -d : -f 2
+```
+
+or see:
+https://docs.dreeve.app/#/getting-started/installation?id=admin-password
 
 ## Install
 

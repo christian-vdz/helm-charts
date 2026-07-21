@@ -1,50 +1,35 @@
 nameOverride: ""
 fullnameOverride: ""
 
-replicaCount: 1
-baseUrl: localhost
+appUrl: http://localhost:8080
 timezone: Europe/Paris
 
 # Used to sign the admin session cookie. Set it to any long random string.
 appSecret: ""
 
-# Existing Strava users want "stravaApi" here, it keeps your current import behaviour.
+# Admin credentials. The passwordHash is a bcrypt hash of the password.
+admin:
+  username: "admin"
+  passwordHash: ""
+
+# Users who migrate from statistics-for-strava chart want "stravaApi" here.
 # The default is "files".
-importMode: "stravaApi"
+importMode: "files"
+
+# Set to true to use an existing secret instead of creating a new one.
+useExistingSecret: false
+existingSecretName: ""
 
 strava:
   # Strava API credentials. Required if useExistingSecret is false.
   clientId: ""
   clientSecret: ""
   refreshToken: ""
-  # Set to true to use an existing secret instead of creating a new one with the provided Strava credentials.
   useExistingSecret: false
   existingSecretName: ""
 
-# Override default config values. See config/default.yaml for all available options.
-# Athlete's birth and weight history dates are required for the app to import data from Strava.
-config:
-  general:
-    athlete:
-      birthday: '2000-01-01'
-      weightHistory:
-        "2000-01-01": 60
-
-# Set gear maintenance config values. See config/example-gear-maintenance.yaml for all available options.
-# Note: the gear maintenance feature is disabled by default. Set `gearMaintenanceConfig.enabled` to true to enable it.
-gearMaintenanceConfig:
-  enabled: false
-  hashtagPrefix: 'sfs'
-  # List of components to track for maintenance. Each component can be attached to one or more gear and can have multiple maintenance tasks.
-  # /!\ At least one component is required to enable the gear maintenance feature.
-  components: []
-  gears: []
-
-# Set to true to clean up old config files that are no longer used by the app.
-# See: https://docs.dreeve.app/#/getting-started/migrating-from-v4?id=_6-clean-up-the-old-configuration
-cleanUpOldConfig: false
-
 app:
+  replicaCount: 1
   image:
     pullPolicy: IfNotPresent
     repository: ghcr.io/dreeveapp/dreeve
@@ -121,3 +106,28 @@ nodeSelector: {}
 tolerations: []
 
 imagePullSecrets: []
+
+### Legacy config values. These are only used for migrating from v4 to v5. You can remove them once you have migrated.
+
+# Override default config values. See config/default.yaml for all available options.
+# Athlete's birth and weight history dates are required for the app to import data from Strava.
+config:
+  general:
+    athlete:
+      birthday: '2000-01-01'
+      weightHistory:
+        "2000-01-01": 60
+
+# Set gear maintenance config values. See config/example-gear-maintenance.yaml for all available options.
+# Note: the gear maintenance feature is disabled by default. Set `gearMaintenanceConfig.enabled` to true to enable it.
+gearMaintenanceConfig:
+  enabled: false
+  hashtagPrefix: 'sfs'
+  # List of components to track for maintenance. Each component can be attached to one or more gear and can have multiple maintenance tasks.
+  # /!\ At least one component is required to enable the gear maintenance feature.
+  components: []
+  gears: []
+
+# Set to true to clean up old config files that are no longer used by the app.
+# See: https://docs.dreeve.app/#/getting-started/migrating-from-v4?id=_6-clean-up-the-old-configuration
+cleanUpOldConfig: false

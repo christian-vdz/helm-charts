@@ -42,14 +42,22 @@ spec:
               mountPath: /var/www/build
               subPath: build
           env:
+            - name: APP_URL
+              value: {{ .Values.appUrl }}
             - name: TZ
               value: {{ .Values.timezone }}
             - name: IMPORT_MODE
               value: {{ .Values.importMode }}
           envFrom:
             - secretRef:
-            {{- if not .Values.strava.useExistingSecret }}
+            {{- if not .Values.useExistingSecret }}
                 name: {{ include "app.fullname" . }}
+            {{- else }}
+                name: {{ .Values.existingSecretName }}
+            {{- end }}
+            - secretRef:
+            {{- if not .Values.strava.useExistingSecret }}
+                name: {{ include "app.fullname" . }}-strava
             {{- else }}
                 name: {{ .Values.strava.existingSecretName }}
             {{- end }}
@@ -87,14 +95,22 @@ spec:
               mountPath: /var/www/build
               subPath: build
           env:
+            - name: APP_URL
+              value: {{ .Values.appUrl }}
             - name: TZ
               value: {{ .Values.timezone }}
             - name: IMPORT_MODE
               value: {{ .Values.importMode }}
           envFrom:
             - secretRef:
-            {{- if not .Values.strava.useExistingSecret }}
+            {{- if not .Values.useExistingSecret }}
                 name: {{ include "app.fullname" . }}
+            {{- else }}
+                name: {{ .Values.existingSecretName }}
+            {{- end }}
+            - secretRef:
+            {{- if not .Values.strava.useExistingSecret }}
+                name: {{ include "app.fullname" . }}-strava
             {{- else }}
                 name: {{ .Values.strava.existingSecretName }}
             {{- end }}

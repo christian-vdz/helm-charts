@@ -1,12 +1,14 @@
 ---
 title: Chart default values
 type: docs
-weight: 4
+weight: 3
 prev: dreeve/import-data
 ---
 
 | Key | Type | Default |
 |-----|------|---------|
+| admin.passwordHash | string | `""` |
+| admin.username | string | `"admin"` |
 | affinity | object | `{}` |
 | app.image.pullPolicy | string | `"IfNotPresent"` |
 | app.image.repository | string | `"ghcr.io/dreeveapp/dreeve"` |
@@ -22,14 +24,16 @@ prev: dreeve/import-data
 | app.readinessProbe.httpGet.port | string | `"http"` |
 | app.resources.requests.cpu | string | `"50m"` |
 | app.resources.requests.memory | string | `"64Mi"` |
+| appSecret | string | `""` |
+| appUrl | string | `"localhost"` |
+| cleanUpOldConfig | bool | `false` |
 | config.general.athlete.birthday | string | `"2000-01-01"` |
 | config.general.athlete.weightHistory.2000-01-01 | int | `60` |
 | fullnameOverride | string | `""` |
-| gearMaintenanceConfig.enabled | bool | `false` |
-| gearMaintenanceConfig.hashtagPrefix | string | `"sfs"` |
 | gearMaintenanceConfig.components | list | `[]` |
+| gearMaintenanceConfig.enabled | bool | `false` |
 | gearMaintenanceConfig.gears | list | `[]` |
-| baseUrl | string | `"localhost"` |
+| gearMaintenanceConfig.hashtagPrefix | string | `"sfs"` |
 | httpRoute.annotations | object | `{}` |
 | httpRoute.enabled | bool | `false` |
 | httpRoute.extraHostnames | list | `[]` |
@@ -38,6 +42,7 @@ prev: dreeve/import-data
 | httpRoute.rules[0].matches[0].path.type | string | `"PathPrefix"` |
 | httpRoute.rules[0].matches[0].path.value | string | `"/headers"` |
 | imagePullSecrets | list | `[]` |
+| importMode | string | `"stravaApi"` |
 | ingress.annotations | object | `{}` |
 | ingress.className | string | `""` |
 | ingress.enabled | bool | `false` |
