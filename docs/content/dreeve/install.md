@@ -38,5 +38,5 @@ https://docs.dreeve.app/#/getting-started/installation?id=admin-password
 
 ```sh
 helm install -n default my-dreeve -f values.yaml \
-  oci://ghcr.io/christian-vdz/helm-charts/dreeve --version 1.0.4
+  oci://ghcr.io/christian-vdz/helm-charts/dreeve --version 1.1.0
 ```
