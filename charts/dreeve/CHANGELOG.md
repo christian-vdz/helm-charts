@@ -1,3 +1,9 @@
+## 1.1.3 (2026-08-11)
+
+### 🩹 Fixes
+
+- bump to v5.2.0 ([5c50df8](https://github.com/christian-vdz/helm-charts/commit/5c50df8))
+
 ## 1.1.2 (2026-08-06)
 
 ### 🩹 Fixes
