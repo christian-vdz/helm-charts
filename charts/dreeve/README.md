@@ -1,6 +1,6 @@
 # dreeve
 
-![Version: 1.1.3](https://img.shields.io/badge/Version-1.1.3-informational?style=flat-square) ![AppVersion: v5.2.0](https://img.shields.io/badge/AppVersion-v5.2.0-informational?style=flat-square)
+![Version: 1.1.4](https://img.shields.io/badge/Version-1.1.4-informational?style=flat-square) ![AppVersion: v5.2.2](https://img.shields.io/badge/AppVersion-v5.2.2-informational?style=flat-square)
 
 A Helm chart for Statistics for Strava, a self-hosted web application that provides insights and analytics for Strava activities.
 
@@ -10,4 +10,4 @@ https://docs.dreeve.app/#/getting-started/prerequisites
 
 ## Install
 
-`helm install my-dreeve oci://ghcr.io/christian-vdz/helm-charts/dreeve --version 1.1.3`
+`helm install my-dreeve oci://ghcr.io/christian-vdz/helm-charts/dreeve --version 1.1.4`
