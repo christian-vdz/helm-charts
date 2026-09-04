@@ -8,7 +8,7 @@ icon: https://github.com/dreeveapp/dreeve/blob/master/public/assets/images/logo.
 home: https://github.com/christian-vdz/helm-charts/charts/dreeve
 sources: 
   - https://github.com/dreeveapp/dreeve
-appVersion: "v5.3.0"
+appVersion: "v5.3.1"
 
 maintainers:
   - name: christian-vdz
