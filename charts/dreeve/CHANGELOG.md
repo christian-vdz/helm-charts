@@ -1,3 +1,9 @@
+## 1.1.14 (2026-10-16)
+
+### 🩹 Fixes
+
+- bump to v5.6.0 ([86cfdf2](https://github.com/christian-vdz/helm-charts/commit/86cfdf2))
+
 ## 1.1.13 (2026-10-12)
 
 ### 🩹 Fixes
