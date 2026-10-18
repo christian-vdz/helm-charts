@@ -24,14 +24,12 @@ spec:
     {{- end }}
   {{- end }}
   rules:
-    - host: {{ .Values.httpHost }}
+    - host: {{ .Values.ingress.http | quote }}
       http:
         paths:
-          {{- range .paths }}
+          {{- range $.Values.ingress.paths }}
           - path: {{ .path }}
-            {{- with .pathType }}
-            pathType: {{ . }}
-            {{- end }}
+            pathType: {{ .pathType | default "Prefix" }}
             backend:
               service:
                 name: {{ include "app.fullname" $ }}

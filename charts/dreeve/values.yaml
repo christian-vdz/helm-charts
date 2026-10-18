@@ -78,9 +78,13 @@ httpRoute:
 
 ingress:
   enabled: false
+  host: ""
   className: ""
   annotations: {}
   tls: []
+  paths:
+    - path: /
+      pathType: Prefix
   extraHosts: []
     # - host: dreeve.local
     #   paths:
