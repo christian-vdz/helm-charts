@@ -1,3 +1,9 @@
+## 1.1.15 (2026-10-18)
+
+### 🩹 Fixes
+
+- dreeve ingress template ([4a0aa82](https://github.com/christian-vdz/helm-charts/commit/4a0aa82))
+
 ## 1.1.14 (2026-10-16)
 
 ### 🩹 Fixes
