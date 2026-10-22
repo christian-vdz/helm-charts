@@ -1,3 +1,9 @@
+## 1.1.17 (2026-10-22)
+
+### 🩹 Fixes
+
+- bump to v5.6.2 ([102af30](https://github.com/christian-vdz/helm-charts/commit/102af30))
+
 ## 1.1.16 (2026-10-19)
 
 ### 🩹 Fixes
