@@ -5,7 +5,7 @@ description: A Helm chart designed to scale deployments up or down, in order to 
 type: application
 
 home: https://github.com/christian-vdz/helm-charts/charts/deployment-start-stop
-sources: 
+sources:
   - https://github.com/christian-vdz/helm-charts/charts/deployment-start-stop
 
 maintainers:

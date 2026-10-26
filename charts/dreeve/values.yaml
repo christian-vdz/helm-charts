@@ -33,7 +33,7 @@ app:
   image:
     pullPolicy: IfNotPresent
     repository: ghcr.io/dreeveapp/dreeve
-    tag: ""  # Defaults to chart appVersion
+    tag: "" # Defaults to chart appVersion
   port: 8080
   readinessProbe:
     httpGet:
@@ -70,9 +70,9 @@ httpRoute:
       sectionName: http
   rules:
     - matches:
-      - path:
-          type: PathPrefix
-          value: /headers
+        - path:
+            type: PathPrefix
+            value: /headers
   extraHostnames: []
     # - dreeve.local
 
@@ -118,7 +118,7 @@ imagePullSecrets: []
 config:
   general:
     athlete:
-      birthday: '2000-01-01'
+      birthday: "2000-01-01"
       weightHistory:
         "2000-01-01": 60
 
@@ -126,7 +126,7 @@ config:
 # Note: the gear maintenance feature is disabled by default. Set `gearMaintenanceConfig.enabled` to true to enable it.
 gearMaintenanceConfig:
   enabled: false
-  hashtagPrefix: 'sfs'
+  hashtagPrefix: "sfs"
   # List of components to track for maintenance. Each component can be attached to one or more gear and can have multiple maintenance tasks.
   # /!\ At least one component is required to enable the gear maintenance feature.
   components: []

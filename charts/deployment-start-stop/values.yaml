@@ -18,7 +18,7 @@ cronjob:
   image:
     pullPolicy: IfNotPresent
     repository: alpine/kubectl
-    tag: ""  # Defaults to Kubernetes version
+    tag: "" # Defaults to Kubernetes version
   resources: {}
   # requests:
   #   cpu: 50m

@@ -6,7 +6,7 @@ type: application
 
 icon: https://github.com/dreeveapp/dreeve/blob/master/public/assets/images/logo.svg
 home: https://github.com/christian-vdz/helm-charts/charts/dreeve
-sources: 
+sources:
   - https://github.com/dreeveapp/dreeve
 appVersion: "v5.7.0"
 

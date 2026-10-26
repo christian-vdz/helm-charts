@@ -78,9 +78,9 @@ httpRoute:
       sectionName: http
   rules:
     - matches:
-      - path:
-          type: PathPrefix
-          value: /headers
+        - path:
+            type: PathPrefix
+            value: /headers
   extraHostnames: []
     # - papra.local
 

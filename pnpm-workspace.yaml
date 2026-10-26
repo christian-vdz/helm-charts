@@ -1,19 +1,19 @@
 packages:
-  - 'charts/*'
+  - "charts/*"
 allowBuilds:
   nx: false
 minimumReleaseAgeExclude:
-  - '@nx/devkit@22.7.5 || 24.0.0'
-  - '@nx/js@22.7.5 || 24.0.0'
-  - '@nx/nx-darwin-arm64@22.7.5 || 24.0.0'
-  - '@nx/nx-darwin-x64@22.7.5 || 24.0.0'
-  - '@nx/nx-freebsd-x64@22.7.5 || 24.0.0'
-  - '@nx/nx-linux-arm-gnueabihf@22.7.5 || 24.0.0'
-  - '@nx/nx-linux-arm64-gnu@22.7.5 || 24.0.0'
-  - '@nx/nx-linux-arm64-musl@22.7.5 || 24.0.0'
-  - '@nx/nx-linux-x64-gnu@22.7.5 || 24.0.0'
-  - '@nx/nx-linux-x64-musl@22.7.5 || 24.0.0'
-  - '@nx/nx-win32-arm64-msvc@22.7.5 || 24.0.0'
-  - '@nx/nx-win32-x64-msvc@22.7.5 || 24.0.0'
-  - '@nx/workspace@22.7.5 || 24.0.0'
+  - "@nx/devkit@22.7.5 || 24.0.0"
+  - "@nx/js@22.7.5 || 24.0.0"
+  - "@nx/nx-darwin-arm64@22.7.5 || 24.0.0"
+  - "@nx/nx-darwin-x64@22.7.5 || 24.0.0"
+  - "@nx/nx-freebsd-x64@22.7.5 || 24.0.0"
+  - "@nx/nx-linux-arm-gnueabihf@22.7.5 || 24.0.0"
+  - "@nx/nx-linux-arm64-gnu@22.7.5 || 24.0.0"
+  - "@nx/nx-linux-arm64-musl@22.7.5 || 24.0.0"
+  - "@nx/nx-linux-x64-gnu@22.7.5 || 24.0.0"
+  - "@nx/nx-linux-x64-musl@22.7.5 || 24.0.0"
+  - "@nx/nx-win32-arm64-msvc@22.7.5 || 24.0.0"
+  - "@nx/nx-win32-x64-msvc@22.7.5 || 24.0.0"
+  - "@nx/workspace@22.7.5 || 24.0.0"
   - nx@22.7.5 || 24.0.0

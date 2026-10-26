@@ -6,7 +6,7 @@ type: application
 
 icon: https://github.com/papra-hq/papra/blob/main/.github/icon-dark.png
 home: https://github.com/christian-vdz/helm-charts/charts/papra
-sources: 
+sources:
   - https://github.com/papra-hq/papra
 appVersion: "26.4.2"
 
