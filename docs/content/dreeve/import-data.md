@@ -23,9 +23,8 @@ Log in to the admin part of Dreeve and upload your files.
 Configure Strava in values.yaml.
 
 ```yaml
-importMode: "stravaApi"
-
 strava:
+  enabled: true
   clientId: ""
   clientSecret: ""
   refreshToken: ""
@@ -33,7 +32,7 @@ strava:
 
 > [!NOTE]
 > The Strava `refreshToken` will be available after first login.  
-> https://docs.dreeve.app/#/getting-started/installation?id=obtaining-a-strava-refresh-token
+> https://docs.dreeve.app/importing/strava-import/#obtaining-a-strava-refresh-token
 
 ## Build app
 

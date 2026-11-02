@@ -17,7 +17,6 @@ https://github.com/dreeveapp/dreeve
 
 - Create Deployment with Persistent Volume
 - Create GatewayAPI HTTPRoute ou Ingress
-- Override app [default configuration](https://raw.githubusercontent.com/dreeveapp/dreeve/refs/heads/master/docs/configuration/config-yaml-example.md)
 
 > [!WARNING]
 > * **Backup before updates**: Always backup your persistent volumes before upgrading.

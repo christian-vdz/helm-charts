@@ -9,4 +9,4 @@ next: dreeve/values
 > [!NOTE]
 > Backup first!
 
-https://docs.dreeve.app/#/getting-started/migrating-from-v4
+https://docs.dreeve.app/getting-started/migrating-from-v4/

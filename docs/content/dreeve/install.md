@@ -8,7 +8,7 @@ next: dreeve/import-data
 
 ## Prerequisites
 
-See https://docs.dreeve.app/#/getting-started/prerequisites
+See https://docs.dreeve.app/getting-started/prerequisites/
 
 ## Required values
 
@@ -32,7 +32,7 @@ htpasswd -bnBC 12 "" my-secure-password | cut -d : -f 2
 ```
 
 or see:
-https://docs.dreeve.app/#/getting-started/installation?id=admin-password
+https://docs.dreeve.app/getting-started/installation/#admin-password
 
 ## Install
 

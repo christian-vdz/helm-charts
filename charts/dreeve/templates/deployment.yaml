@@ -30,10 +30,6 @@ spec:
               containerPort: {{ .Values.app.port }}
               protocol: TCP
           volumeMounts:
-          {{- if not .Values.cleanUpOldConfig }}
-            - name: {{ include "app.fullname" . }}-config
-              mountPath: /var/www/config/app
-          {{- end }}
             - name: {{ include "app.fullname" . }}-claim0
               mountPath: /var/www/storage/database
               subPath: database
@@ -49,7 +45,7 @@ spec:
             - name: TZ
               value: {{ .Values.timezone }}
             - name: IMPORT_MODE
-              value: {{ .Values.importMode }}
+              value: {{ ternary "stravaApi" "files" .Values.strava.enabled | quote }}
           envFrom:
             - secretRef:
             {{- if not .Values.useExistingSecret }}
@@ -57,11 +53,13 @@ spec:
             {{- else }}
                 name: {{ .Values.existingSecretName }}
             {{- end }}
+            {{- if .Values.strava.enabled }}
             - secretRef:
             {{- if not .Values.strava.useExistingSecret }}
                 name: {{ include "app.fullname" . }}-strava
             {{- else }}
                 name: {{ .Values.strava.existingSecretName }}
+            {{- end }}
             {{- end }}
           {{- with .Values.securityContext }}
           securityContext:
@@ -85,10 +83,6 @@ spec:
           command: ["bin/console"]
           args: ["app:daemon:run"]
           volumeMounts:
-          {{- if not .Values.cleanUpOldConfig }}
-            - name: {{ include "app.fullname" . }}-config
-              mountPath: /var/www/config/app
-          {{- end }}
             - name: {{ include "app.fullname" . }}-claim0
               mountPath: /var/www/storage/database
               subPath: database
@@ -104,7 +98,7 @@ spec:
             - name: TZ
               value: {{ .Values.timezone }}
             - name: IMPORT_MODE
-              value: {{ .Values.importMode }}
+              value: {{ ternary "stravaApi" "files" .Values.strava.enabled | quote }}
           envFrom:
             - secretRef:
             {{- if not .Values.useExistingSecret }}
@@ -112,11 +106,13 @@ spec:
             {{- else }}
                 name: {{ .Values.existingSecretName }}
             {{- end }}
+            {{- if .Values.strava.enabled }}
             - secretRef:
             {{- if not .Values.strava.useExistingSecret }}
                 name: {{ include "app.fullname" . }}-strava
             {{- else }}
                 name: {{ .Values.strava.existingSecretName }}
+            {{- end }}
             {{- end }}
           {{- with .Values.securityContext }}
           securityContext:
@@ -127,9 +123,6 @@ spec:
             {{- toYaml . | nindent 12 }}
           {{- end }}
       volumes:
-        - name: {{ include "app.fullname" . }}-config
-          configMap:
-            name: {{ include "app.fullname" . }}-config
         - name: {{ include "app.fullname" . }}-claim0
           persistentVolumeClaim:
             claimName: {{ include "app.fullname" . }}-claim0

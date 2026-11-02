@@ -6,7 +6,7 @@ A Helm chart for Statistics for Strava, a self-hosted web application that provi
 
 ## Prerequisites
 
-https://docs.dreeve.app/#/getting-started/prerequisites
+https://docs.dreeve.app/getting-started/prerequisites/
 
 ## Install
 

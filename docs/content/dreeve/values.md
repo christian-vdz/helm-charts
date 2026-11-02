@@ -5,10 +5,11 @@ weight: 3
 prev: dreeve/import-data
 ---
 
-| Key | Type | Default |
-|-----|------|---------|
-| admin.passwordHash | string | `""` |
+
+| Key | Type | Default | Description |
+|-----|------|---------|-------------|
 | admin.username | string | `"admin"` |
+| admin.passwordHash | string | `"replace-me-with-a-bcrypt-hash-of-your-password"` |
 | affinity | object | `{}` |
 | app.image.pullPolicy | string | `"IfNotPresent"` |
 | app.image.repository | string | `"ghcr.io/dreeveapp/dreeve"` |
@@ -22,18 +23,13 @@ prev: dreeve/import-data
 | app.port | int | `8080` |
 | app.readinessProbe.httpGet.path | string | `"/"` |
 | app.readinessProbe.httpGet.port | string | `"http"` |
+| app.replicaCount | int | `1` |
 | app.resources.requests.cpu | string | `"50m"` |
 | app.resources.requests.memory | string | `"64Mi"` |
-| appSecret | string | `""` |
-| appUrl | string | `"localhost"` |
-| cleanUpOldConfig | bool | `false` |
-| config.general.athlete.birthday | string | `"2000-01-01"` |
-| config.general.athlete.weightHistory.2000-01-01 | int | `60` |
+| appSecret | string | `"change-me-to-a-long-random-string"` |
+| appUrl | string | `"http://localhost:8080"` |
+| existingSecretName | string | `""` |
 | fullnameOverride | string | `""` |
-| gearMaintenanceConfig.components | list | `[]` |
-| gearMaintenanceConfig.enabled | bool | `false` |
-| gearMaintenanceConfig.gears | list | `[]` |
-| gearMaintenanceConfig.hashtagPrefix | string | `"sfs"` |
 | httpRoute.annotations | object | `{}` |
 | httpRoute.enabled | bool | `false` |
 | httpRoute.extraHostnames | list | `[]` |
@@ -42,25 +38,28 @@ prev: dreeve/import-data
 | httpRoute.rules[0].matches[0].path.type | string | `"PathPrefix"` |
 | httpRoute.rules[0].matches[0].path.value | string | `"/headers"` |
 | imagePullSecrets | list | `[]` |
-| importMode | string | `"stravaApi"` |
 | ingress.annotations | object | `{}` |
 | ingress.className | string | `""` |
 | ingress.enabled | bool | `false` |
 | ingress.extraHosts | list | `[]` |
+| ingress.host | string | `""` |
+| ingress.paths[0].path | string | `"/"` |
+| ingress.paths[0].pathType | string | `"Prefix"` |
 | ingress.tls | list | `[]` |
 | nameOverride | string | `""` |
 | nodeSelector | object | `{}` |
 | podAnnotations | object | `{}` |
 | podLabels | object | `{}` |
 | podSecurityContext | object | `{}` |
-| replicaCount | int | `1` |
 | securityContext | object | `{}` |
 | service.port | int | `8080` |
 | service.type | string | `"ClusterIP"` |
 | strava.clientId | string | `""` |
 | strava.clientSecret | string | `""` |
+| strava.enabled | bool | `false` |
 | strava.existingSecretName | string | `""` |
 | strava.refreshToken | string | `""` |
 | strava.useExistingSecret | bool | `false` |
 | timezone | string | `"Europe/Paris"` |
 | tolerations | list | `[]` |
+| useExistingSecret | bool | `false` |

@@ -1,34 +1,98 @@
-1. Get the application URL by running these commands:
-{{- if .Values.httpRoute.enabled }}
-{{- if .Values.httpRoute.hostnames }}
-    export APP_HOSTNAME={{ .Values.httpRoute.hostnames | first }}
-{{- else }}
-    export APP_HOSTNAME=$(kubectl get --namespace {{(first .Values.httpRoute.parentRefs).namespace | default .Release.Namespace }} gateway/{{ (first .Values.httpRoute.parentRefs).name }} -o jsonpath="{.spec.listeners[0].hostname}")
-  {{- end }}
-{{- if and .Values.httpRoute.rules (first .Values.httpRoute.rules).matches (first (first .Values.httpRoute.rules).matches).path.value }}
-    echo "Visit http://$APP_HOSTNAME{{ (first (first .Values.httpRoute.rules).matches).path.value }} to use your application"
 
-    NOTE: Your dashboard.HTTPRoute depends on the listener configuration of your gateway and your dashboard.HTTPRoute rules.
-    The rules can be set for path, method, header and query parameters.
-    You can check the gateway configuration with 'kubectl get --namespace {{(first .Values.httpRoute.parentRefs).namespace | default .Release.Namespace }} gateway/{{ (first .Values.httpRoute.parentRefs).name }} -o yaml'
+{{- $fullname := include "app.fullname" . -}}
+{{- $servicePort := .Values.service.port -}}
+
+Dreeve has been deployed successfully!
+
+Release:   {{ .Release.Name }}
+Namespace: {{ .Release.Namespace }}
+Version:   {{ .Chart.AppVersion }}
+
+APPLICATION
+  URL:         {{ .Values.appUrl }}
+  Timezone:    {{ .Values.timezone }}
+  Import mode: {{ ternary "Strava API" "Files" .Values.strava.enabled }}
+
+ACCESS
+{{- if .Values.ingress.enabled }}
+  Ingress: enabled
+  URL: http{{ if .Values.ingress.tls }}s{{ end }}://{{ .Values.ingress.host }}
+  Class: {{ .Values.ingress.className | default "default" }}
+{{- range .Values.ingress.extraHosts }}
+  Additional host: {{ .host }}
 {{- end }}
-{{- else if .Values.ingress.enabled }}
-{{- range $host := .Values.ingress.hosts }}
-  {{- range .paths }}
-  http{{ if $.Values.ingress.tls }}s{{ end }}://{{ $host.host }}{{ .path }}
-  {{- end }}
+
+{{- else if .Values.httpRoute.enabled }}
+  Gateway API HTTPRoute: enabled
+  Parent gateway(s):
+{{- range .Values.httpRoute.parentRefs }}
+    - {{ .name }}{{ with .sectionName }} ({{ . }}){{ end }}
 {{- end }}
-{{- else if contains "NodePort" .Values.service.type }}
-  export NODE_PORT=$(kubectl get --namespace {{ .Release.Namespace }} -o jsonpath="{.spec.ports[0].nodePort}" services {{ include "app.fullname" . }})
-  export NODE_IP=$(kubectl get nodes --namespace {{ .Release.Namespace }} -o jsonpath="{.items[0].status.addresses[0].address}")
-  echo http://$NODE_IP:$NODE_PORT
-{{- else if contains "LoadBalancer" .Values.service.type }}
-     NOTE: It may take a few minutes for the LoadBalancer IP to be available.
-           You can watch its status by running 'kubectl get --namespace {{ .Release.Namespace }} svc -w {{ include "app.fullname" . }}'
-  export SERVICE_IP=$(kubectl get svc --namespace {{ .Release.Namespace }} {{ include "app.fullname" . }} --template "{{"{{ range (index .status.loadBalancer.ingress 0) }}{{.}}{{ end }}"}}")
-  echo http://$SERVICE_IP:{{ .Values.service.port }}
-{{- else if contains "ClusterIP" .Values.service.type }}
-  export POD_NAME=$(kubectl get pods --namespace {{ .Release.Namespace }} -l "app.kubernetes.io/name={{ include "app.name" . }},app.kubernetes.io/instance={{ .Release.Name }}" -o jsonpath="{.items[0].metadata.name}")
-  kubectl --namespace {{ .Release.Namespace }} port-forward $POD_NAME {{ .Values.app.port }}:{{ .Values.app.port }}
-  echo "Visit http://127.0.0.1:{{ .Values.app.port }} to use your application"
+  Hostnames:
+{{- if .Values.httpRoute.extraHostnames }}
+{{- range .Values.httpRoute.extraHostnames }}
+    - {{ . }}
 {{- end }}
+{{- else }}
+    - No explicit hostnames configured
+{{- end }}
+
+{{- else }}
+  No Ingress or HTTPRoute is enabled.
+
+  Access Dreeve locally using:
+
+    kubectl -n {{ .Release.Namespace }} port-forward svc/{{ $fullname }} 8080:{{ $servicePort }}
+
+  Then open:
+
+    http://localhost:8080
+{{- end }}
+
+ADMINISTRATION
+  Username: {{ .Values.admin.username }}
+
+{{- if .Values.useExistingSecret }}
+  Application credentials:
+    Using existing Secret: {{ .Values.existingSecretName }}
+{{- else }}
+  Application credentials:
+    Managed by this Helm release.
+{{- end }}
+
+{{- if .Values.strava.enabled }}
+STRAVA INTEGRATION
+  Status: enabled
+
+{{- if .Values.strava.useExistingSecret }}
+  Credentials: existing Secret ({{ .Values.strava.existingSecretName }})
+{{- else }}
+  Credentials: managed by this Helm release
+{{- end }}
+
+{{- else }}
+
+STRAVA INTEGRATION
+  Status: disabled
+{{- end }}
+
+PERSISTENCE
+  Access mode: {{ .Values.app.persistence.accessMode }}
+  Size:        {{ .Values.app.persistence.size }}
+{{- with .Values.app.persistence.storageClass }}
+  StorageClass: {{ . }}
+{{- end }}
+
+USEFUL COMMANDS
+  Check pods:
+    kubectl -n {{ .Release.Namespace }} get pods -l app.kubernetes.io/instance={{ .Release.Name }}
+
+  View logs:
+    kubectl -n {{ .Release.Namespace }} logs deployment/{{ $fullname }} --follow
+
+  Check PVCs:
+    kubectl -n {{ .Release.Namespace }} get pvc -l app.kubernetes.io/instance={{ .Release.Name }}
+
+DOCUMENTATION
+  - https://docs.dreeve.app
+  - https://christian-vdz.github.io/helm-charts/dreeve
