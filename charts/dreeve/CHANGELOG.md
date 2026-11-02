@@ -1,3 +1,9 @@
+## 1.2.0 (2026-11-02)
+
+### 🚀 Features
+
+- enhance and cleanup old configs ([6e02676](https://github.com/christian-vdz/helm-charts/commit/6e02676))
+
 ## 1.1.19 (2026-11-02)
 
 ### 🩹 Fixes
