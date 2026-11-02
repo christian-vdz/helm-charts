@@ -1,0 +1,14 @@
+apiVersion: v2
+name: base-app
+version: 0.1.0
+description: A generic Helm chart for deploying a web application on Kubernetes. Use it as a starting point for any application deployment.
+type: application
+
+home: https://github.com/christian-vdz/helm-charts/charts/base-app
+sources:
+  - https://github.com/christian-vdz/helm-charts
+
+maintainers:
+  - name: christian-vdz
+    email: christian@slashops.fr
+    url: https://github.com/christian-vdz

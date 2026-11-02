@@ -9,6 +9,7 @@ type: docs
 ## Charts
 
 {{< cards >}}
+  {{< card link="base-app" title="Base App" icon="book-open" >}}
   {{< card link="deployment-start-stop" title="Deployment Start/Stop" icon="book-open" >}}
   {{< card link="dreeve" title="Dreeve" icon="book-open" >}}
 {{< /cards >}}

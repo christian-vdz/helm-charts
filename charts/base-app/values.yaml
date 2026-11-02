@@ -1,0 +1,145 @@
+# Default values for base-app.
+# This is a generic chart: override these values to deploy any web application.
+
+nameOverride: ""
+fullnameOverride: ""
+
+replicaCount: 1
+
+image:
+  repository: nginx
+  pullPolicy: IfNotPresent
+  tag: "" # Defaults to the chart appVersion, or "latest" if none is set.
+
+imagePullSecrets: []
+
+# Container command and arguments. Leave empty to use the image entrypoint.
+command: []
+args: []
+
+# Port the container listens on.
+containerPort: 8080
+
+# Environment variables set on the main container.
+env: []
+# - name: TZ
+#   value: Europe/Paris
+
+# Extra environment sources (ConfigMaps, Secrets) for the main container.
+envFrom: []
+# - secretRef:
+#     name: my-app-secret
+# - configMapRef:
+#     name: my-app-config
+
+# Additional containers sharing the pod (sidecars).
+extraContainers: []
+# - name: cloud-sql-proxy
+#   image: gcr.io/cloud-sql-connectors/cloud-sql-proxy:latest
+
+# Containers run before the main container starts.
+initContainers: []
+# - name: init-db
+#   image: busybox
+#   command: ["sh", "-c", "echo ready"]
+
+# Liveness, readiness and startup probes. Keys are the Kubernetes probe fields.
+probes:
+  liveness: {}
+  # liveness:
+  #   httpGet:
+  #     path: /healthz
+  #     port: http
+  #   initialDelaySeconds: 10
+  readiness: {}
+  # readiness:
+  #   httpGet:
+  #     path: /ready
+  #     port: http
+  startup: {}
+
+resources: {}
+  # requests:
+  #   cpu: 50m
+  #   memory: 64Mi
+  # limits:
+  #   cpu: 1000m
+  #   memory: 512Mi
+
+securityContext: {}
+  # runAsNonRoot: true
+  # readOnlyRootFilesystem: true
+  # capabilities:
+  #   drop:
+  #     - ALL
+
+podSecurityContext: {}
+  # fsGroup: 2000
+
+# Set to use an existing ServiceAccount for the pod.
+serviceAccountName: ""
+
+podLabels: {}
+podAnnotations: {}
+
+affinity: {}
+nodeSelector: {}
+tolerations: []
+
+service:
+  type: ClusterIP
+  port: 8080
+  annotations: {}
+
+persistence:
+  # Create a PersistentVolumeClaim and mount it in the main container.
+  enabled: true
+  # Mount an existing claim instead of creating one.
+  existingClaim: ""
+  mountPath: /data
+  # Optional subPath inside the volume.
+  subPath: ""
+  accessMode: ReadWriteOnce
+  size: 1Gi
+  # storageClass: "standard"
+  storageClass: ""
+
+# Volumes and volume mounts added to the pod and the main container.
+extraVolumes: []
+# - name: config
+#   configMap:
+#     name: my-app-config
+extraVolumeMounts: []
+# - name: config
+#   mountPath: /etc/my-app
+#   readOnly: true
+
+ingress:
+  enabled: false
+  host: ""
+  className: ""
+  annotations: {}
+  tls: []
+  paths:
+    - path: /
+      pathType: Prefix
+  extraHosts: []
+  # - host: app.example.com
+  #   paths:
+  #     - path: /
+  #       pathType: Prefix
+
+httpRoute:
+  enabled: false
+  annotations: {}
+  parentRefs:
+    - name: gateway
+      sectionName: http
+  # Hostnames exposed by the HTTPRoute. Empty means inherit from the gateway listener.
+  hostnames: []
+  # - app.example.com
+  rules:
+    - matches:
+        - path:
+            type: PathPrefix
+            value: /

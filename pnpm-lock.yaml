@@ -21,6 +21,8 @@ importers:
         specifier: 24.0.3
         version: 24.0.3
 
+  charts/base-app: {}
+
   charts/deployment-start-stop: {}
 
   charts/dreeve: {}

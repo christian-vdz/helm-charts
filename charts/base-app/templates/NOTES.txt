@@ -1,0 +1,175 @@
+
+{{- $fullname := include "base-app.fullname" . -}}
+{{- $namespace := .Release.Namespace -}}
+{{- $servicePort := .Values.service.port -}}
+{{- $imageTag := .Values.image.tag | default .Chart.AppVersion | default "latest" -}}
+
+Base-app has been deployed successfully!
+
+Release:   {{ .Release.Name }}
+Namespace: {{ $namespace }}
+Version:   {{ .Chart.Version }}
+App:       {{ .Chart.AppVersion | default "N/A" }}
+
+WORKLOAD
+  Deployment: {{ $fullname }}
+  Replicas:   {{ .Values.replicaCount }}
+  Image:      {{ .Values.image.repository }}:{{ $imageTag }}
+  Port:       {{ .Values.containerPort }}
+
+{{- if .Values.serviceAccountName }}
+  ServiceAccount: {{ .Values.serviceAccountName }}
+{{- end }}
+
+SERVICE
+  Name: {{ $fullname }}
+  Type: {{ .Values.service.type }}
+  Port: {{ $servicePort }}
+
+ACCESS
+{{- if .Values.ingress.enabled }}
+
+  Ingress: enabled
+  Class: {{ .Values.ingress.className | default "default" }}
+
+{{- if .Values.ingress.host }}
+  Primary hostname:
+    {{ .Values.ingress.host }}
+{{- end }}
+
+{{- range .Values.ingress.extraHosts }}
+  Additional hostname:
+    {{ .host }}
+{{- end }}
+
+{{- if .Values.ingress.tls }}
+  TLS: configured
+{{- else }}
+  TLS: not configured in this Ingress
+{{- end }}
+{{- end }}
+
+{{- if .Values.httpRoute.enabled }}
+
+  Gateway API HTTPRoute: enabled
+
+  Parent gateways:
+{{- range .Values.httpRoute.parentRefs }}
+    - {{ .name }}{{ with .namespace }} (namespace: {{ . }}){{ end }}{{ with .sectionName }} [{{ . }}]{{ end }}
+{{- end }}
+
+{{- if .Values.httpRoute.hostnames }}
+  Hostnames:
+{{- range .Values.httpRoute.hostnames }}
+    - {{ . }}
+{{- end }}
+{{- else }}
+  Hostnames: inherited from matching Gateway listeners
+{{- end }}
+{{- end }}
+
+{{- if not (or .Values.ingress.enabled .Values.httpRoute.enabled) }}
+
+  No Ingress or HTTPRoute is enabled.
+
+  Access the application locally:
+
+    kubectl -n {{ $namespace }} port-forward svc/{{ $fullname }} 8080:{{ $servicePort }}
+
+  Then open:
+
+    http://localhost:8080
+{{- end }}
+
+PERSISTENCE
+{{- if .Values.persistence.enabled }}
+  Status: enabled
+  Mount path: {{ .Values.persistence.mountPath }}
+{{- if .Values.persistence.subPath }}
+  SubPath: {{ .Values.persistence.subPath }}
+{{- end }}
+
+{{- if .Values.persistence.existingClaim }}
+  Existing PVC: {{ .Values.persistence.existingClaim }}
+{{- else }}
+  PVC: managed by this Helm release
+  Size: {{ .Values.persistence.size }}
+  Access mode: {{ .Values.persistence.accessMode }}
+{{- if .Values.persistence.storageClass }}
+  StorageClass: {{ .Values.persistence.storageClass }}
+{{- else }}
+  StorageClass: cluster default
+{{- end }}
+{{- end }}
+{{- else }}
+  Status: disabled
+  No PVC is managed by this chart.
+{{- end }}
+
+CONTAINER CONFIGURATION
+  Environment variables:  {{ len .Values.env }}
+  Environment sources:    {{ len .Values.envFrom }}
+  Sidecars:               {{ len .Values.extraContainers }}
+  Init containers:        {{ len .Values.initContainers }}
+  Extra volumes:          {{ len .Values.extraVolumes }}
+
+HEALTH CHECKS
+  Liveness:  {{ if .Values.probes.liveness }}enabled{{ else }}disabled{{ end }}
+  Readiness: {{ if .Values.probes.readiness }}enabled{{ else }}disabled{{ end }}
+  Startup:   {{ if .Values.probes.startup }}enabled{{ else }}disabled{{ end }}
+
+RESOURCES
+{{- with .Values.resources.requests }}
+  Requests:
+{{- range $key, $value := . }}
+    {{ $key }}: {{ $value }}
+{{- end }}
+{{- else }}
+  Requests: not configured
+{{- end }}
+{{- with .Values.resources.limits }}
+  Limits:
+{{- range $key, $value := . }}
+    {{ $key }}: {{ $value }}
+{{- end }}
+{{- else }}
+  Limits: not configured
+{{- end }}
+
+USEFUL COMMANDS
+  Check deployment:
+    kubectl -n {{ $namespace }} get deployment {{ $fullname }}
+
+  Check pods:
+    kubectl -n {{ $namespace }} get pods -l app.kubernetes.io/instance={{ .Release.Name }}
+
+  View logs:
+    kubectl -n {{ $namespace }} logs deployment/{{ $fullname }} --all-containers=true --follow
+
+  Check rollout:
+    kubectl -n {{ $namespace }} rollout status deployment/{{ $fullname }}
+
+  Restart deployment:
+    kubectl -n {{ $namespace }} rollout restart deployment/{{ $fullname }}
+
+{{- if .Values.persistence.enabled }}
+  Check persistent volumes:
+    kubectl -n {{ $namespace }} get pvc
+{{- end }}
+
+{{- if .Values.ingress.enabled }}
+  Check Ingress:
+    kubectl -n {{ $namespace }} get ingress {{ $fullname }}
+{{- end }}
+
+{{- if .Values.httpRoute.enabled }}
+  Check HTTPRoute:
+    kubectl -n {{ $namespace }} get httproute {{ $fullname }}
+{{- end }}
+
+HELM
+  Show release values:
+    helm get values {{ .Release.Name }} -n {{ $namespace }}
+
+  Show release status:
+    helm status {{ .Release.Name }} -n {{ $namespace }}

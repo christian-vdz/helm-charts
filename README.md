@@ -8,6 +8,7 @@ A collection of Helm charts for deploying applications on Kubernetes.
 
 | Chart                                                   | Description                                                    |
 | ------------------------------------------------------- | -------------------------------------------------------------- |
+| [`base-app`](charts/base-app)                           | A generic Helm chart for deploying any web application         |
 | [`deployment-start-stop`](charts/deployment-start-stop) | A Helm chart designed to scale deployments up or down          |
 | [`dreeve`](charts/dreeve)                               | A Helm chart for [Dreeve](https://github.com/dreeveapp/dreeve) |
 
