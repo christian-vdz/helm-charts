@@ -1,0 +1,73 @@
+
+{{- $fullname := include "app.fullname" . -}}
+{{- $deployments := .Values.deploymentsToScale | default list -}}
+{{- $statefulsets := .Values.statefulSetToScale | default list -}}
+{{- $total := add (len $deployments) (len $statefulsets) -}}
+
+Deployment Start/Stop has been deployed successfully!
+
+Release:   {{ .Release.Name }}
+Namespace: {{ .Release.Namespace }}
+Version:   {{ .Chart.Version }}
+
+SCHEDULE
+  Start:     {{ .Values.cronjob.startSchedule }}
+  Stop:      {{ .Values.cronjob.stopSchedule }}
+  Time zone: {{ .Values.cronjob.timeZone }}
+
+TARGET RESOURCES
+  Deployments:  {{ len $deployments }}
+  StatefulSets: {{ len $statefulsets }}
+  Total:        {{ $total }}
+
+{{- if gt (len $deployments) 0 }}
+
+DEPLOYMENTS
+{{- range $deployments }}
+  - {{ .namespace }}/{{ .name }}
+{{- end }}
+{{- end }}
+
+{{- if gt (len $statefulsets) 0 }}
+
+STATEFULSETS
+{{- range $statefulsets }}
+  - {{ .namespace }}/{{ .name }}
+{{- end }}
+{{- end }}
+
+{{- if eq $total 0 }}
+
+WARNING
+  No Deployments or StatefulSets are configured for scaling.
+
+  Configure deploymentsToScale or statefulSetToScale in values.yaml.
+{{- end }}
+
+CRONJOBS
+  List scheduled jobs:
+    kubectl -n {{ .Release.Namespace }} get cronjobs
+
+  View recent executions:
+    kubectl -n {{ .Release.Namespace }} get jobs
+
+  View job logs:
+    kubectl -n {{ .Release.Namespace }} logs job/<job-name>
+
+  Manually trigger a CronJob:
+    kubectl -n {{ .Release.Namespace }} create job \
+      --from=cronjob/<cronjob-name> manual-run
+
+CONFIGURATION
+  Container image:
+    {{ .Values.cronjob.image.repository }}:{{ .Values.cronjob.image.tag | default "{Kubernetes version}" }}
+
+  Image pull policy:
+    {{ .Values.cronjob.image.pullPolicy }}
+
+IMPORTANT
+  Scaling operations require Kubernetes RBAC permissions
+  on the targeted Deployments and StatefulSets.
+
+  Verify that the chart's ServiceAccount has the required
+  permissions in every target namespace.
