@@ -5,10 +5,10 @@ description: A Helm chart for Dreeve, a self-hosted web application that provide
 type: application
 
 icon: https://github.com/dreeveapp/dreeve/blob/master/public/assets/images/logo.svg
-home: https://github.com/christian-vdz/helm-charts/charts/dreeve
+home: https://github.com/christian-vdz/helm-charts/tree/main/charts/dreeve
 sources:
   - https://github.com/dreeveapp/dreeve
-appVersion: "v5.8.0"
+appVersion: "v5.8.1"
 
 maintainers:
   - name: christian-vdz
